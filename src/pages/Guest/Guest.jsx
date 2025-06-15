@@ -1,6 +1,6 @@
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { AiOutlineCar } from "react-icons/ai";
-import { MdFastfood } from "react-icons/md";
+import { MdDirectionsCar } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import { BiRocket, BiPlay } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
@@ -8,62 +8,62 @@ import React from "react";
 import testi from "../../data/testi.json";
 import products from "../../data/products.json";
 
+
 export default function Guest() {
   return (
     <div className="guest-page">
-      <section className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-25 to-yellow-50 overflow-hidden pt-24">
+      <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-indigo-25 to-purple-50 overflow-hidden pt-24">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-orange-200 to-amber-200 rounded-full opacity-30 animate-bounce"></div>
-          <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-full opacity-40 animate-pulse"></div>
-          <div className="absolute bottom-32 left-32 w-28 h-28 bg-gradient-to-br from-amber-200 to-yellow-200 rounded-full opacity-25 animate-bounce delay-1000"></div>
-          <div className="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-orange-100 to-amber-100 rounded-full opacity-20 animate-pulse delay-500"></div>
+          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-30 animate-bounce"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-40 animate-pulse"></div>
+          <div className="absolute bottom-32 left-32 w-28 h-28 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full opacity-25 animate-bounce delay-1000"></div>
+          <div className="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-20 animate-pulse delay-500"></div>
 
-          <div className="absolute top-32 left-1/4 w-12 h-12 bg-orange-300 transform rotate-45 opacity-20 animate-spin"></div>
-          <div className="absolute bottom-40 right-1/4 w-16 h-16 bg-amber-300 transform rotate-12 opacity-25 animate-pulse"></div>
+          <div className="absolute top-32 left-1/4 w-12 h-12 bg-blue-300 transform rotate-45 opacity-20 animate-spin"></div>
+          <div className="absolute bottom-40 right-1/4 w-16 h-16 bg-indigo-300 transform rotate-12 opacity-25 animate-pulse"></div>
 
-          <div className="absolute top-1/4 right-12 w-64 h-64 bg-gradient-to-br from-orange-300 to-transparent rounded-full opacity-10 animate-pulse"></div>
-          <div className="absolute bottom-1/4 left-12 w-48 h-48 bg-gradient-to-br from-amber-300 to-transparent rounded-full opacity-15 animate-bounce"></div>
+          <div className="absolute top-1/4 right-12 w-64 h-64 bg-gradient-to-br from-blue-300 to-transparent rounded-full opacity-10 animate-pulse"></div>
+          <div className="absolute bottom-1/4 left-12 w-48 h-48 bg-gradient-to-br from-indigo-300 to-transparent rounded-full opacity-15 animate-bounce"></div>
         </div>
 
         <div className="container mx-auto px-6 py-20 flex flex-col lg:flex-row items-center justify-between min-h-screen relative z-10 max-w-screen-xl">
           <div className="lg:w-1/2 mb-12 lg:mb-0 space-y-8">
-            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-orange-200 animate-fadeIn">
-              <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-orange-600">
-                Platform Makanan Terpercaya
+            <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-blue-200 animate-fadeIn">
+              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-blue-600">
+                Platform Rental Mobil Terpercaya
               </span>
             </div>
 
             <div className="space-y-4 animate-slideUp">
               <h1 className="text-lg md:text-xl font-medium text-gray-600 animate-fadeIn delay-200">
-                Ayo, Cobain dan rasakan pengalamannya
+                Wujudkan Perjalanan Impian Anda
               </h1>
               <h1 className="text-4xl md:text-6xl font-bold leading-tight animate-fadeIn delay-400">
-                Rasakan Kelezatan
+                Sewa Mobil
                 <br />
-                <span className="bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-x">
-                  Masakan Indonesia
+                <span className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 bg-clip-text text-transparent animate-gradient-x">
+                  Mudah & Terpercaya
                 </span>
               </h1>
             </div>
 
             <p className="text-lg text-gray-600 leading-relaxed max-w-lg animate-fadeIn delay-600">
-              Pesan makanan favoritmu dengan mudah dan nikmati pengalaman yang
-              tak terlupakan dengan
-              <span className="font-semibold text-orange-600"> Sedap</span>.
-              Nikmati kepraktisan makan enak dengan layanan pengiriman kami yang
-              cepat dan bebas ribet.
+              Temukan berbagai pilihan kendaraan sesuai kebutuhan dan budget Anda dengan
+              <span className="font-semibold text-blue-600"> RentCar</span>.
+              Nikmati kemudahan menyewa mobil dengan armada terawat dan layanan berkualitas
+              untuk perjalanan yang nyaman dan aman.
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeIn delay-800">
               <a
                 href="#topProduk"
-                className="group relative overflow-hidden bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 <div className="relative flex items-center gap-2">
                   <BiRocket className="text-xl" />
-                  <span>Pesan Sekarang</span>
+                  <span>Sewa Sekarang</span>
                   <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </a>
@@ -74,19 +74,19 @@ export default function Guest() {
             <div className="relative">
               <div className="relative bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30">
                 <img
-                  src="/img/fotoawal.png"
-                  alt="Makanan Indonesia"
+                  src="/img/fotoawal1.png"
+                  alt="Rental Mobil"
                   className="w-full h-auto transform hover:scale-105 transition-transform duration-700"
                 />
 
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg animate-bounce">
                   <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
-                      <MdFastfood className="text-orange-500" />
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                      <MdDirectionsCar className="text-blue-500" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold">Makanan Segar</div>
-                      <div className="text-xs text-gray-500">Baru Dimasak</div>
+                      <div className="text-sm font-semibold">Mobil Bersih</div>
+                      <div className="text-xs text-gray-500">Terawat Baik</div>
                     </div>
                   </div>
                 </div>
@@ -97,8 +97,8 @@ export default function Guest() {
                       <AiOutlineCar className="text-green-500" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold">15 Menit</div>
-                      <div className="text-xs text-gray-500">Pengiriman</div>
+                      <div className="text-sm font-semibold">24 Jam</div>
+                      <div className="text-xs text-gray-500">Layanan</div>
                     </div>
                   </div>
                 </div>
@@ -110,20 +110,20 @@ export default function Guest() {
                         <AiFillStar key={i} className="text-sm" />
                       ))}
                     </div>
-                    <span className="text-sm font-semibold">4.8</span>
+                    <span className="text-sm font-semibold">4.9</span>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -z-10 inset-0 bg-gradient-to-br from-orange-200 to-amber-200 rounded-3xl transform rotate-6 scale-110 opacity-20"></div>
-              <div className="absolute -z-20 inset-0 bg-gradient-to-br from-yellow-200 to-orange-200 rounded-3xl transform -rotate-3 scale-105 opacity-15"></div>
+              <div className="absolute -z-10 inset-0 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-3xl transform rotate-6 scale-110 opacity-20"></div>
+              <div className="absolute -z-20 inset-0 bg-gradient-to-br from-purple-200 to-blue-200 rounded-3xl transform -rotate-3 scale-105 opacity-15"></div>
             </div>
           </div>
         </div>
 
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-orange-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-orange-400 rounded-full mt-2 animate-pulse"></div>
+          <div className="w-6 h-10 border-2 border-blue-400 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-blue-400 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
@@ -131,15 +131,15 @@ export default function Guest() {
       {/* About Section */}
       <section
         id="about"
-        className="relative py-20 bg-gradient-to-br from-orange-50 via-white to-orange-50 overflow-hidden"
+        className="relative py-20 bg-gradient-to-br from-blue-50 via-white to-blue-50 overflow-hidden"
       >
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-orange-200 rounded-full opacity-30 animate-pulse"></div>
-          <div className="absolute top-32 right-20 w-16 h-16 bg-red-200 rounded-full opacity-40 animate-bounce"></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-yellow-200 rounded-full opacity-50 animate-pulse"></div>
-          <div className="absolute bottom-32 right-1/3 w-24 h-24 bg-orange-100 rounded-full opacity-30"></div>
-          <div className="absolute top-1/4 right-10 w-8 h-8 bg-orange-300 transform rotate-45 opacity-20"></div>
-          <div className="absolute bottom-1/4 left-16 w-6 h-6 bg-red-300 transform rotate-12 opacity-30"></div>
+          <div className="absolute top-10 left-10 w-20 h-20 bg-blue-200 rounded-full opacity-30 animate-pulse"></div>
+          <div className="absolute top-32 right-20 w-16 h-16 bg-indigo-200 rounded-full opacity-40 animate-bounce"></div>
+          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-purple-200 rounded-full opacity-50 animate-pulse"></div>
+          <div className="absolute bottom-32 right-1/3 w-24 h-24 bg-blue-100 rounded-full opacity-30"></div>
+          <div className="absolute top-1/4 right-10 w-8 h-8 bg-blue-300 transform rotate-45 opacity-20"></div>
+          <div className="absolute bottom-1/4 left-16 w-6 h-6 bg-indigo-300 transform rotate-12 opacity-30"></div>
           <svg
             className="absolute top-0 left-0 w-full h-32"
             viewBox="0 0 1200 120"
@@ -148,7 +148,7 @@ export default function Guest() {
             <path
               d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
               opacity=".25"
-              fill="#fed7aa"
+              fill="#dbeafe"
             ></path>
           </svg>
         </div>
@@ -156,110 +156,110 @@ export default function Guest() {
         <div className="container mx-auto px-6 relative z-10 max-w-screen-xl">
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
-              <span className="px-4 py-2 bg-orange-100 text-orange-600 rounded-full text-sm font-medium">
+              <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
                 Tentang Kami
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">
               Mengapa Memilih
-              <span className="text-orange-500 ml-2">Sedap?</span>
+              <span className="text-blue-500 ml-2">RentCar?</span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-orange-400 to-red-400 mx-auto mb-8 rounded-full"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-8 rounded-full"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Sedap adalah aplikasi yang memudahkan Anda menemukan dan menikmati
-              berbagai hidangan lezat dari berbagai tempat dengan pengalaman
-              yang tak terlupakan.
+              RentCar adalah platform rental mobil yang menyediakan berbagai pilihan kendaraan
+              berkualitas dengan harga terjangkau, memberikan kemudahan dan kenyamanan
+              untuk perjalanan Anda.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-orange-100 flex flex-col justify-between">
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-blue-100 flex flex-col justify-between">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <div className="relative mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <MdFastfood className="text-3xl text-white" />
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <MdDirectionsCar className="text-3xl text-white" />
                 </div>
                 <div className="absolute inset-0 w-16 h-16 mx-auto">
-                  <div className="absolute inset-0 bg-red-400 rounded-2xl opacity-30 animate-ping"></div>
+                  <div className="absolute inset-0 bg-blue-400 rounded-2xl opacity-30 animate-ping"></div>
                   <div
-                    className="absolute inset-0 bg-red-300 rounded-2xl opacity-20 animate-ping"
+                    className="absolute inset-0 bg-blue-300 rounded-2xl opacity-20 animate-ping"
                     style={{ animationDelay: "0.5s" }}
                   ></div>
                 </div>
               </div>
-              <h3 className="font-RethinkSans-SemiBold text-xl mb-4 text-gray-800 group-hover:text-orange-600 transition-colors duration-300 text-center">
-                Makanan Berkualitas
-              </h3>
-              <p className="text-gray-600 leading-relaxed text-center">
-                Kami bekerja sama dengan chef dan restoran terbaik untuk
-                menjamin kualitas makanan yang lezat dan bergizi.
-              </p>
-            </div>
-
-            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-orange-100 flex flex-col justify-between">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              <div className="relative mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <AiOutlineCar className="text-3xl text-white" />
-                </div>
-                <div className="absolute inset-0 w-16 h-16 mx-auto">
-                  <div className="absolute inset-0 bg-blue-400 rounded-2xl opacity-30 animate-ping"></div>
-                </div>
-              </div>
               <h3 className="font-RethinkSans-SemiBold text-xl mb-4 text-gray-800 group-hover:text-blue-600 transition-colors duration-300 text-center">
-                Pengiriman Cepat
+                Armada Berkualitas
               </h3>
               <p className="text-gray-600 leading-relaxed text-center">
-                Sistem pengiriman kami memastikan makanan sampai dalam kondisi
-                hangat dan tepat waktu langsung ke pintu Anda.
+                Kami menyediakan armada kendaraan yang terawat dengan baik, 
+                bersih, dan selalu dalam kondisi prima untuk kenyamanan perjalanan Anda.
               </p>
             </div>
 
-            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-orange-100 flex flex-col justify-between">
+            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-blue-100 flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-emerald-400 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
               <div className="relative mb-6">
                 <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
-                  <BiMoneyWithdraw className="text-3xl text-white" />
+                  <AiOutlineCar className="text-3xl text-white" />
                 </div>
                 <div className="absolute inset-0 w-16 h-16 mx-auto">
                   <div className="absolute inset-0 bg-green-400 rounded-2xl opacity-30 animate-ping"></div>
                 </div>
               </div>
               <h3 className="font-RethinkSans-SemiBold text-xl mb-4 text-gray-800 group-hover:text-green-600 transition-colors duration-300 text-center">
-                Harga Terjangkau
+                Layanan 24/7
               </h3>
               <p className="text-gray-600 leading-relaxed text-center">
-                Nikmati makanan lezat dengan harga yang bersahabat dan berbagai
-                promo menarik setiap hari.
+                Tim support kami siap melayani Anda kapan saja dengan respons cepat
+                untuk memastikan perjalanan Anda berjalan lancar tanpa kendala.
+              </p>
+            </div>
+
+            <div className="group relative bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-blue-100 flex flex-col justify-between">
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400 rounded-3xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+              <div className="relative mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <BiMoneyWithdraw className="text-3xl text-white" />
+                </div>
+                <div className="absolute inset-0 w-16 h-16 mx-auto">
+                  <div className="absolute inset-0 bg-orange-400 rounded-2xl opacity-30 animate-ping"></div>
+                </div>
+              </div>
+              <h3 className="font-RethinkSans-SemiBold text-xl mb-4 text-gray-800 group-hover:text-orange-600 transition-colors duration-300 text-center">
+                Harga Kompetitif
+              </h3>
+              <p className="text-gray-600 leading-relaxed text-center">
+                Dapatkan harga rental terbaik sesuai budget Anda dengan berbagai pilihan
+                paket harian, mingguan, dan bulanan yang fleksibel.
               </p>
             </div>
           </div>
 
-          <div className="mt-20 bg-white rounded-3xl shadow-xl p-8 border border-orange-100">
+          <div className="mt-20 bg-white rounded-3xl shadow-xl p-8 border border-blue-100">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               <div className="group">
-                <div className="text-3xl font-bold text-orange-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl font-bold text-blue-500 mb-2 group-hover:scale-110 transition-transform duration-300">
                   1000+
                 </div>
                 <div className="text-gray-600 font-medium">Pelanggan Puas</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-red-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl font-bold text-indigo-500 mb-2 group-hover:scale-110 transition-transform duration-300">
                   50+
                 </div>
-                <div className="text-gray-600 font-medium">Menu Pilihan</div>
+                <div className="text-gray-600 font-medium">Unit Kendaraan</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-blue-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl font-bold text-green-500 mb-2 group-hover:scale-110 transition-transform duration-300">
                   24/7
                 </div>
                 <div className="text-gray-600 font-medium">Layanan</div>
               </div>
               <div className="group">
-                <div className="text-3xl font-bold text-green-500 mb-2 group-hover:scale-110 transition-transform duration-300">
-                  15 Min
+                <div className="text-3xl font-bold text-purple-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+                  2 Jam
                 </div>
-                <div className="text-gray-600 font-medium">Pengiriman</div>
+                <div className="text-gray-600 font-medium">Persiapan</div>
               </div>
             </div>
           </div>
@@ -296,17 +296,17 @@ export default function Guest() {
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
               <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                Menu Favorit
+                Armada Pilihan
               </span>
             </div>
             <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">
-              Produk
+              Kendaraan
               <span className="text-blue-500 ml-2">Unggulan</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-8 rounded-full"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Temukan berbagai pilihan makanan lezat yang telah dipilih khusus
-              untuk memberikan pengalaman kuliner terbaik.
+              Pilih dari berbagai jenis kendaraan yang sesuai dengan kebutuhan perjalanan Anda,
+              mulai dari city car hingga SUV dengan harga yang kompetitif.
             </p>
           </div>
 
@@ -326,8 +326,8 @@ export default function Guest() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-orange-600 shadow-lg">
-                    Populer
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-blue-600 shadow-lg">
+                    Tersedia
                   </div>
                 </div>
 
@@ -337,8 +337,8 @@ export default function Guest() {
                   </h3>
 
                   <div className="flex items-center justify-between mb-4">
-                    <p className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-                      Rp {product.harga.toLocaleString()}
+                    <p className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                      Rp {product.harga.toLocaleString()}/hari
                     </p>
                     <div className="flex items-center space-x-1 text-yellow-400">
                       <AiFillStar className="text-sm" />
@@ -348,7 +348,7 @@ export default function Guest() {
 
                   <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
                     <span className="flex items-center justify-center space-x-2">
-                      <span>Pesan Sekarang</span>
+                      <span>Sewa Sekarang</span>
                       <svg
                         className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
                         fill="none"
