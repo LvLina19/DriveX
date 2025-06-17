@@ -18,7 +18,7 @@ const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
     <Suspense fallback={<Loading />}>
       <Routes>
         <Route element={<GuestLayout />}>
-          <Route path="/" element={<Guest />} />
+          <Route path="/guest" element={<Guest />} />
         </Route>
 
         <Route element={<AuthLayout />}>
