@@ -27,7 +27,7 @@ export default function HeaderGuest() {
           href="/guest"
           className="font-poppins-extrabold text-[40px] text-gray-900"
         >
-          Sedap<span className="text-hijau">.</span>
+          Drive<span className="text-cyan-300">X</span>
         </a>
 
         <nav className="flex space-x-9 pl-50">
