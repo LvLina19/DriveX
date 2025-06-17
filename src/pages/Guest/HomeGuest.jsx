@@ -57,7 +57,7 @@ export default function HomeGuest() {
             <div className="relative">
               <div className="relative bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30">
                 <img src="/img/fotoawal1.png" alt="Rental Mobil" className="w-full h-auto transform hover:scale-105 transition-transform duration-700" />
-                {/* Icon, service info */}
+                
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg animate-bounce">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
