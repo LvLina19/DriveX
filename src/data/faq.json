@@ -1,0 +1,44 @@
+{
+  "faq": [
+    {
+      "question": "Bagaimana cara menyewa mobil di DriveX?",
+      "answer": "Anda dapat menyewa mobil dengan mudah melalui website kami. Pilih tanggal, lokasi, dan jenis mobil yang diinginkan. Kemudian lakukan pembayaran dan mobil siap digunakan. Tim kami akan membantu proses penyerahan kendaraan."
+    },
+    {
+      "question": "Apa saja persyaratan untuk menyewa mobil?",
+      "answer": "Persyaratan menyewa mobil: KTP yang masih berlaku, SIM A yang masih berlaku, usia minimal 21 tahun, dan deposit sesuai ketentuan. Untuk sewa jangka panjang diperlukan dokumen tambahan seperti slip gaji atau surat keterangan kerja."
+    },
+    {
+      "question": "Apakah tersedia layanan antar-jemput?",
+      "answer": "Mohon maaf, saat ini kami belum menyediakan layanan antar-jemput. Namun, kami terus berupaya mengembangkan layanan kami agar dapat memenuhi kebutuhan pelanggan di masa mendatang."
+    },
+    {
+      "question": "Bagaimana jika terjadi kerusakan atau kecelakaan?",
+      "answer": "Semua kendaraan kami sudah diasuransikan. Jika terjadi kerusakan atau kecelakaan, segera hubungi customer service kami. Tim akan membantu proses klaim asuransi dan penyediaan kendaraan pengganti jika diperlukan."
+    },
+    {
+      "question": "Apakah bisa menyewa tanpa sopir (self-drive)?",
+      "answer": "Ya, kami menyediakan layanan sewa mobil tanpa sopir (self-drive). Pastikan Anda memiliki SIM A yang masih berlaku dan pengalaman mengemudi yang cukup. Briefing singkat akan diberikan sebelum penyerahan kendaraan."
+    },
+    {
+      "question": "Berapa lama minimal sewa dan bagaimana sistem pembayaran?",
+      "answer": "Minimal sewa adalah 12 jam. Sistem pembayaran bisa cash, transfer bank, atau pembayaran digital. Untuk sewa harian pembayaran di muka, untuk sewa bulanan bisa cicilan dengan DP 30% dari total biaya sewa."
+    },
+    {
+      "question": "Apakah ada biaya tambahan yang perlu diketahui?",
+      "answer": "Biaya sewa sudah termasuk asuransi dasar. Biaya tambahan mungkin dikenakan untuk: BBM (jika tidak full tank), overtime, keluar kota, dan kerusakan akibat kelalaian. Semua biaya akan dijelaskan secara transparan sebelum kontrak."
+    },
+    {
+      "question": "Bagaimana kebijakan pembatalan sewa?",
+      "answer": "Pembatalan 24 jam sebelum jadwal: gratis. Pembatalan 12-24 jam sebelum: dikenakan biaya 25%. Pembatalan kurang dari 12 jam: dikenakan biaya 50%. Pembatalan mendadak tanpa konfirmasi: tidak ada pengembalian biaya."
+    },
+    {
+      "question": "Apakah tersedia mobil untuk kebutuhan khusus seperti wedding atau event?",
+      "answer": "Ya, kami memiliki koleksi mobil mewah dan klasik untuk acara wedding, prewedding, dan event khusus. Tersedia juga dekorasi tambahan dan paket lengkap dengan fotografer. Booking minimal 1 minggu sebelum acara."
+    },
+    {
+      "question": "Bagaimana cara menghubungi customer service jika ada masalah?",
+      "answer": "Customer service kami tersedia 24/7 melalui: telepon di 0852-6491-9002, WhatsApp di 0852-6491-9002, email di support@DriveX.com, atau chat langsung di website. Tim kami siap membantu masalah apapun selama masa sewa."
+    }
+  ]
+}

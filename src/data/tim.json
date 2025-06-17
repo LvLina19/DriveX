@@ -1,0 +1,31 @@
+{
+  "tim": [
+    {
+      "name": "Najwa Azizi",
+      "role": "CEO & Pendiri",
+      "photo": "../../public/img/team1.jpg",
+      "instagram": "https://www.instagram.com/najwaa_azizi/?next=%2F",
+      "email": "najwa23ti@mahasiswa.pcr.ac.id",
+      "linkedin": "https://www.linkedin.com/in/najwa-azizi",
+      "description": "Visionaris di balik DriveX dengan pengalaman 8+ tahun di industri otomotif dan transportasi"     
+    },
+    {
+      "name": "Adam Akbar Iskandar",
+      "role": "Dukungan Pelanggan",
+      "photo": "../../public/img/team2.jpg",
+      "instagram": "https://instagram.com/rina",
+      "email": "adam23ti@mahasiswa.pcr.ac.id",
+      "linkedin": "https://linkedin.com/in/rinakurnia",
+      "description": "Spesialis dalam memberikan pengalaman pelanggan terbaik dengan layanan 24/7 yang responsif"      
+    },
+    {
+      "name": "Elviana Golina",
+      "role": "Manajer Armada",
+      "photo": "/img/team3.jpg",
+      "instagram": "https://instagram.com/andi",
+      "email": "elviana23ti@mahasiswa.pcr.ac.id",
+      "linkedin": "https://linkedin.com/in/andisaputra",
+      "description": "Mengelola armada 500+ kendaraan dengan standar kualitas dan keamanan tertinggi"     
+    }
+  ]
+}

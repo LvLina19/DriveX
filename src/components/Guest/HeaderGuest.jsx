@@ -58,12 +58,12 @@ export default function HeaderGuest() {
             Produk
           </a>
           <a
-            href="/cekProduk"
+            href="/guest#tim"
             className={`${
-              location.pathname === "/cekProduk" ? "text-blue-500" : "text-gray-800"
+              location.pathname === "#tim" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            Cek Stok
+            Tim 
           </a>
 
           <a

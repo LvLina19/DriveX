@@ -6,6 +6,8 @@ import { FiArrowRight } from "react-icons/fi";
 import Tentang from "./Tentang";
 import DaftarProduk from "./DaftarProduk";
 import Testi from "./Testi";
+import TimKita from "./TimKita";
+import Faq from "./Faq";
 
 export default function HomeGuest() {
   return (
@@ -36,7 +38,7 @@ export default function HomeGuest() {
 
             <p className="text-lg text-gray-600 leading-relaxed max-w-lg animate-fadeIn delay-600">
               Temukan berbagai pilihan kendaraan sesuai kebutuhan dan budget Anda dengan
-              <span className="font-semibold text-blue-600"> RentCar</span>.
+              <span className="font-semibold text-blue-600"> DriveX</span>.
               Nikmati kemudahan menyewa mobil dengan armada terawat dan layanan berkualitas
               untuk perjalanan yang nyaman dan aman.
             </p>
@@ -106,7 +108,9 @@ export default function HomeGuest() {
       </section>
       <Tentang />
       <DaftarProduk />
+      <TimKita/>
       <Testi />
+      <Faq />
     </div>
   );
 }
