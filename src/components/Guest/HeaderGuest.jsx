@@ -35,33 +35,33 @@ export default function HeaderGuest() {
             href="/guest"
             className={`${
               location.pathname === "/guest" && activeSection === ""
-                ? "text-orange-500"
+                ? "text-blue-500"
                 : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            Home
+            Beranda
           </a>
           <a
-            href="/guest#about"
+            href="/guest#tentang"
             className={`${
-              activeSection === "#about" ? "text-orange-500" : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+              activeSection === "#about" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            About
+            Tentang
           </a>
           <a
             href="/guest#topProduk"
             className={`${
-              activeSection === "#topProduk" ? "text-orange-500" : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+              activeSection === "#topProduk" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
             Produk
           </a>
           <a
             href="/cekProduk"
             className={`${
-              location.pathname === "/cekProduk" ? "text-orange-500" : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+              location.pathname === "/cekProduk" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
             Cek Stok
           </a>
@@ -69,16 +69,16 @@ export default function HeaderGuest() {
           <a
             href="/guest#testi"
             className={`${
-              activeSection === "#testi" ? "text-orange-500" : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+              activeSection === "#testi" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
             Testimoni
           </a>
           <a
             href="/guest#kontak"
             className={`${
-              activeSection === "#kontak" ? "text-orange-500" : "text-gray-800"
-            } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+              activeSection === "#kontak" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
             Kontak
           </a>
@@ -87,13 +87,13 @@ export default function HeaderGuest() {
         <div className="flex items-center space-x-5 ml-10">
           <a
             href="/login"
-            className="px-5 py-2 bg-orange-500 text-white text-sm font-RethinkSans-SemiBold rounded-full hover:bg-orange-600 transition duration-300"
+            className="px-5 py-2 bg-blue-500 text-white text-sm font-RethinkSans-SemiBold rounded-full hover:bg-blue-600 transition duration-300"
           >
             Login
           </a>
           <a
             href="/register"
-            className="px-6 py-2 bg-transparent border-2 border-orange-500 text-orange-500 text-sm font-RethinkSans-SemiBold rounded-full hover:bg-orange-500 hover:text-white transition duration-300"
+            className="px-6 py-2 bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold rounded-full hover:bg-blue-500 hover:text-white transition duration-300"
           >
             Register
           </a>
