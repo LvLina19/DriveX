@@ -43,7 +43,7 @@ export default function Login() {
         }
 
         // Redirect ke dashboard jika login sukses
-        navigate("/");
+        navigate("/admin");
       })
       .catch((err) => {
         if (err.response) {
