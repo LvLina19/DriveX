@@ -39,7 +39,7 @@ export default function HeaderGuest() {
                 : "text-gray-800"
             } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            Home
+            Beranda
           </a>
           <a
             href="/guest#about"
@@ -47,7 +47,7 @@ export default function HeaderGuest() {
               activeSection === "#about" ? "text-orange-500" : "text-gray-800"
             } hover:text-orange-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            About
+            Tentang
           </a>
           <a
             href="/guest#topProduk"

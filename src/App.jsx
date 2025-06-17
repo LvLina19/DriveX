@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Admin from "./pages/Admin/Admin";
 
 
-const Guest = React.lazy(() => import("./pages/Guest/Guest"))
+const Guest = React.lazy(() => import("./pages/Guest/HomeGuest"))
 const Loading = React.lazy(() => import("./components/Guest/Loading"));
 const GuestLayout = React.lazy(() => import("./layouts/GuestLayout"));
 const AuthLayout = React.lazy(() => import("./layouts/AuthLayout"));
