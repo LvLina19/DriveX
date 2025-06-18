@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import './assets/tailwind.css';
 import { Route, Routes } from "react-router-dom";
-import Admin from "./pages/Admin/Admin";
+const Admin = React.lazy(() => import("./pages/Admin/HomeAdmin"))
 const Guest = React.lazy(() => import("./pages/Guest/HomeGuest"))
 const Loading = React.lazy(() => import("./components/Guest/Loading"));
 const GuestLayout = React.lazy(() => import("./layouts/GuestLayout"));
