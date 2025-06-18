@@ -24,7 +24,7 @@ export default function HeaderAdmin() {
     <header className="fixed w-full top-0 z-50 bg-white">
       <div className="container max-w-screen-xl mx-auto px-6 flex items-center justify-between py-5">
         <a
-          href="/"
+          href="/admin"
           className="font-poppins-extrabold text-[40px] text-gray-900"
         >
           Drive<span className="text-cyan-300">X</span>
@@ -32,9 +32,9 @@ export default function HeaderAdmin() {
 
         <nav className="flex space-x-9 pl-50">
           <a
-            href="/"
+            href="/admin"
             className={`${
-              location.pathname === "/guest" && activeSection === ""
+              location.pathname === "/admin" && activeSection === ""
                 ? "text-blue-500"
                 : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -42,7 +42,7 @@ export default function HeaderAdmin() {
             Beranda
           </a>
           <a
-            href="/#tentang"
+            href="/admin#tentang"
             className={`${
               activeSection === "#tentang" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -50,7 +50,7 @@ export default function HeaderAdmin() {
             Tentang
           </a>
           <a
-            href="/#topProduk"
+            href="/admin#topProduk"
             className={`${
               activeSection === "#topProduk" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -58,7 +58,7 @@ export default function HeaderAdmin() {
             Produk
           </a>
           <a
-            href="/#tim"
+            href="/admin#tim"
             className={`${
               location.pathname === "#tim" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -67,7 +67,7 @@ export default function HeaderAdmin() {
           </a>
 
           <a
-            href="/#testi"
+            href="/admin#testi"
             className={`${
               activeSection === "#testi" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -75,7 +75,7 @@ export default function HeaderAdmin() {
             Testimoni
           </a>
           <a
-            href="/#kontak"
+            href="/admin#kontak"
             className={`${
               activeSection === "#kontak" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}

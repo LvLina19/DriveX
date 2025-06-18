@@ -1,3 +1,4 @@
+import { FaEdit } from "react-icons/fa";
 import { AiOutlineCar } from "react-icons/ai";
 import { MdDirectionsCar } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
@@ -52,14 +53,21 @@ export default function HomeAdmin() {
                   <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </a>
+              <button href="#"
+                className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-4 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
+                <div className="relative flex items-center gap-2">
+                  <FaEdit className="text-xl"/>
+                </div>
+              </button>
             </div>
+
           </div>
 
           <div className="lg:w-1/2 relative animate-fadeIn delay-300">
             <div className="relative">
               <div className="relative bg-white/20 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30">
                 <img src="/img/fotoawal1.png" alt="Rental Mobil" className="w-full h-auto transform hover:scale-105 transition-transform duration-700" />
-                
+
                 <div className="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-lg animate-bounce">
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
@@ -108,7 +116,7 @@ export default function HomeAdmin() {
       </section>
       <Tentang />
       <DaftarProduk />
-      <TimKita/>
+      <TimKita />
       <Testi />
       <Faq />
     </div>

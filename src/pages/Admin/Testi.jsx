@@ -1,5 +1,6 @@
 import { AiFillStar } from "react-icons/ai";
 import testi from "../../data/testi.json";
+import { FaEdit } from "react-icons/fa";
 
 export default function Testi() {
   return (
@@ -17,7 +18,13 @@ export default function Testi() {
           </div>
           <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">
             Testimoni
-            <span className="text-purple-500 ml-2">Pelanggan</span>
+            <span className="text-purple-500 ml-2">Pelanggan </span>
+            <button href="#"
+              className="bg-transparent border-2 border-purple-400 text-purple-400 text-sm font-RethinkSans-SemiBold px-6 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-purple-400 hover:to-pink-400 hover:text-white transition duration-300">
+              <div className="relative flex items-center gap-2">
+                <FaEdit className="text-xl" />
+              </div>
+            </button>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-8 rounded-full"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">

@@ -1,10 +1,11 @@
 import { AiFillStar } from "react-icons/ai";
 import products from "../../data/products.json";
+import { FaEdit } from "react-icons/fa";
 
 export default function DaftarProduk() {
   return (
     <section id="topProduk" className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">       
+      <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-16 right-12 w-32 h-32 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
         <div className="absolute bottom-16 left-12 w-24 h-24 bg-indigo-200 rounded-full opacity-30 animate-bounce"></div>
         <div className="absolute top-1/3 left-8 w-16 h-16 bg-purple-200 rounded-full opacity-25"></div>
@@ -19,7 +20,14 @@ export default function DaftarProduk() {
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">Armada Pilihan</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">Kendaraan <span className="text-blue-500 ml-2">Unggulan</span></h2>
+          <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">Kendaraan <span className="text-blue-500 ml-2">Unggulan </span>
+            <button href="#"
+              className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
+              <div className="relative flex items-center gap-2">
+                <FaEdit className="text-xl" />
+              </div>
+            </button>
+          </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-8 rounded-full"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Pilih dari berbagai jenis kendaraan yang sesuai dengan kebutuhan perjalanan Anda,

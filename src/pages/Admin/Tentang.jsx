@@ -1,6 +1,7 @@
 import { BiMoneyWithdraw } from "react-icons/bi";
 import { AiOutlineCar } from "react-icons/ai";
 import { MdDirectionsCar } from "react-icons/md";
+import { FaEdit } from "react-icons/fa";
 
 export default function Tentang() {
   return (
@@ -18,7 +19,13 @@ export default function Tentang() {
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">Tentang Kami</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">
-            Mengapa Memilih <span className="text-blue-500 ml-2">DriveX?</span>
+            Mengapa Memilih <span className="text-blue-500 ml-2">DriveX? </span>
+            <button href="#"
+              className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
+              <div className="relative flex items-center gap-2">
+                <FaEdit className="text-xl" />
+              </div>
+            </button>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-8 rounded-full"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
