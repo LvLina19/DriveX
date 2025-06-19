@@ -9,7 +9,7 @@ import testi from "../../data/testi.json";
 import products from "../../data/products.json";
 
 
-export default function Admin() {
+export default function Guest() {
   return (
     <div className="guest-page">
       <section className="relative min-h-screen bg-gradient-to-br from-blue-50 via-indigo-25 to-purple-50 overflow-hidden pt-24">

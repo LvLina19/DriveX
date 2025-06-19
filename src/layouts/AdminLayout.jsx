@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
 import HeaderAdmin from '../components/Admin/HeaderAdmin';
+import HeaderDashboard from '../components/Admin/HeaderDashboard';
 // import Footer from '../components/Footer';
 
-const GuestLayout = () => {
+const AdminLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <HeaderAdmin />
       <main className="flex-grow">
         <Outlet />
       </main>
@@ -14,4 +14,4 @@ const GuestLayout = () => {
   );
 };
 
-export default GuestLayout;
+export default AdminLayout;

@@ -1,9 +1,8 @@
 import React, { Suspense } from "react";
 import './assets/tailwind.css';
 import { Route, Routes } from "react-router-dom";
-import Admin from "./pages/Admin/Admin";
-
-
+const Admin = React.lazy(() => import("./pages/Admin/CRUD/Admin"))
+const HomeAdmin = React.lazy(() => import("./pages/Admin/Dashboard/HomeAdmin"))
 const Guest = React.lazy(() => import("./pages/Guest/HomeGuest"))
 const Loading = React.lazy(() => import("./components/Guest/Loading"));
 const GuestLayout = React.lazy(() => import("./layouts/GuestLayout"));
@@ -12,6 +11,7 @@ const AdminLayout = React.lazy(() => import("./layouts/AdminLayout"));
 const Login = React.lazy(() => import("./pages/auth/Login"));
 const Register = React.lazy(() => import("./pages/auth/Register"));
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
+const ProductDetail = React.lazy(() => import("./pages/Admin/CRUD/ProductDetail"));
 
 function App() {
   return (
@@ -29,6 +29,8 @@ function App() {
 
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/dashboard" element={<HomeAdmin />} />
+          <Route path="/admin/:id" element={<ProductDetail />} />
         </Route>
         
       </Routes>
@@ -36,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
