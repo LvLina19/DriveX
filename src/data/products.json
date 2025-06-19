@@ -3,37 +3,37 @@
     {
       "kode_produk": "K001",
       "nama_produk": "Fortuner",
-      "harga": 35000,
-      "stok" : 20,
-      "gambar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fotomotif.indozone.id%2Fmarket%2F934948080%2Fdaftar-mobil-toyota-gr-sport-yang-hadir-di-indonesia-dari-yang-termurah-hingga-termahal&psig=AOvVaw0NDX5cB3olym6dTvHYd9LJ&ust=1750425401502000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCSjPbI_Y0DFQAAAAAdAAAAABAE"
+      "harga": 1200000,
+      "stok": 20,
+      "gambar": "../../public/img/mobil1.webp"
     },
     {
       "kode_produk": "K002",
       "nama_produk": "Alphard",
-      "harga": 28000,
-      "stok" : 50,
-      "gambar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fsetirkanan.co.id%2Farticle%2F10-mobil-mewah-keluarga-terbaik-harga-mulai-400-jutaan&psig=AOvVaw0NDX5cB3olym6dTvHYd9LJ&ust=1750425401502000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCSjPbI_Y0DFQAAAAAdAAAAABAM"
+      "harga": 3000000,
+      "stok": 50,
+      "gambar": "../../public/img/mobil2.jpg"
     },
     {
       "kode_produk": "K003",
       "nama_produk": "Terios",
-      "harga": 42000,
-      "stok" : 5,
-      "gambar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.acc.co.id%2Finfo-terkini%2F9-mobil-besar-berbagasi-luas-cocok-untuk-sahur-on-the-road&psig=AOvVaw0NDX5cB3olym6dTvHYd9LJ&ust=1750425401502000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCSjPbI_Y0DFQAAAAAdAAAAABAU"
+      "harga": 600000,
+      "stok": 5,
+      "gambar": "../../public/img/mobil3.png"
     },
     {
       "kode_produk": "K004",
       "nama_produk": "Avanza",
-      "harga": 25000,
-      "stok" : 10,
-      "gambar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.jba.co.id%2Fid%2Fnews%2Frekomendasi-mobil-mpv&psig=AOvVaw0NDX5cB3olym6dTvHYd9LJ&ust=1750425401502000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCSjPbI_Y0DFQAAAAAdAAAAABAc"
+      "harga": 500000,
+      "stok": 10,
+      "gambar": "../../public/img/mobil4.webp"
     },
     {
       "kode_produk": "K005",
       "nama_produk": "Wuling",
-      "harga": 30000,
-      "stok" : 0,
-      "gambar": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fskorlife.com%2Fblog%2Fgaya-hidup%2Fjenis-mobil-listrik%2F&psig=AOvVaw0NDX5cB3olym6dTvHYd9LJ&ust=1750425401502000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKCSjPbI_Y0DFQAAAAAdAAAAABAw"
+      "harga": 600000,
+      "stok": 0,
+      "gambar": "../../public/img/mobil5.jpg"
     }
   ]
 }
