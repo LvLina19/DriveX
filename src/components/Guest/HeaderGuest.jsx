@@ -6,7 +6,7 @@ export default function HeaderGuest() {
   const [activeSection, setActiveSection] = useState("");
 
   const handleScroll = () => {
-    const sections = ["#tentang", "#topProduk","#tim", "#testi", "#kontak"];
+    const sections = ["#tentang", "#topProduk","#tim", "#testi", "#kontak","#faq"];
     const sectionInView = sections.find((section) => {
       const element = document.querySelector(section);
       const rect = element?.getBoundingClientRect();
@@ -73,6 +73,14 @@ export default function HeaderGuest() {
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
             Testimoni
+          </a>
+          <a
+            href="/#faq"
+            className={`${
+              activeSection === "#faq" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            FAQ
           </a>
           <a
             href="/#kontak"
