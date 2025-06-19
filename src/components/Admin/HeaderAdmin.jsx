@@ -2,23 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function HeaderAdmin() {
-  const location = useLocation();
-  const [activeSection, setActiveSection] = useState("");
-
-  const handleScroll = () => {
-    const sections = ["#about", "#topProduk", "#testi", "#kontak"];
-    const sectionInView = sections.find((section) => {
-      const element = document.querySelector(section);
-      const rect = element?.getBoundingClientRect();
-      return rect && rect.top <= 0 && rect.bottom > 0;
-    });
-    setActiveSection(sectionInView);
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   return (
     <header className="fixed w-full top-0 z-50 bg-white">
@@ -33,54 +16,13 @@ export default function HeaderAdmin() {
         <nav className="flex space-x-9 pl-50">
           <a
             href="/admin"
-            className={`${
-              location.pathname === "/admin" && activeSection === ""
-                ? "text-blue-500"
-                : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Beranda
+            className=" text-gray-800 hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide">
+            Data
           </a>
           <a
-            href="/admin#tentang"
-            className={`${
-              activeSection === "#tentang" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Tentang
-          </a>
-          <a
-            href="/admin#topProduk"
-            className={`${
-              activeSection === "#topProduk" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Produk
-          </a>
-          <a
-            href="/admin#tim"
-            className={`${
-              location.pathname === "#tim" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Tim 
-          </a>
-
-          <a
-            href="/admin#testi"
-            className={`${
-              activeSection === "#testi" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Testimoni
-          </a>
-          <a
-            href="/admin#kontak"
-            className={`${
-              activeSection === "#kontak" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Kontak
+            href="/dashboard"
+            className=" text-gray-800 hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide">
+            Dashboard
           </a>
         </nav>
 

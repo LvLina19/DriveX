@@ -1,5 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
-import testi from "../../data/testi.json";
+import testi from "../../../data/testi.json";
 import { FaEdit } from "react-icons/fa";
 
 export default function Testi() {

@@ -1,5 +1,5 @@
 import { AiFillStar } from "react-icons/ai";
-import products from "../../data/products.json";
+import products from "../../../data/products.json";
 import { FaEdit } from "react-icons/fa";
 
 export default function DaftarProduk() {

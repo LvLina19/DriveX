@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaChevronDown, FaQuestionCircle, FaLightbulb, FaHeadset, FaSearch } from "react-icons/fa";
-import faq from "../../data/faq.json";
+import faq from "../../../data/faq.json";
 
 export default function FAQ() {
   const [activeIndex, setActiveIndex] = useState(null);

@@ -9,10 +9,12 @@ import DaftarProduk from "./DaftarProduk";
 import Testi from "./Testi";
 import TimKita from "./TimKita";
 import Faq from "./Faq";
+import HeaderDashboard from "../../../components/Admin/HeaderDashboard";
 
 export default function HomeAdmin() {
   return (
     <div className="guest-page">
+      <HeaderDashboard/>
       <section id="" className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-30 animate-bounce"></div>

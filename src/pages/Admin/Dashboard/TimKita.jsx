@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaLinkedin, FaInstagram, FaEnvelope, FaStar, FaQuoteLeft, FaEdit } from "react-icons/fa";
-import tim from "../../data/tim.json";
+import tim from "../../../data/tim.json";
 
 export default function TimKita() {
   return (
