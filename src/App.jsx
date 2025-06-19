@@ -13,7 +13,7 @@ const Login = React.lazy(() => import("./pages/auth/Login"));
 const Register = React.lazy(() => import("./pages/auth/Register"));
 const Forgot = React.lazy(() => import("./pages/auth/Forgot"));
 
-;function App() {
+function App() {
   return (
     <Suspense fallback={<Loading />}>
       <Routes>
