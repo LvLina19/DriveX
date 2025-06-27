@@ -5,35 +5,40 @@
       "nama_produk": "Fortuner",
       "harga": 1200000,
       "stok": 20,
-      "gambar": "../../public/img/mobil1.webp"
+      "gambar": "../../public/img/mobil1.webp",
+      "deskripsi": "Toyota Fortuner adalah SUV premium yang menawarkan kenyamanan dan performa tangguh untuk perjalanan jarak jauh. Dilengkapi dengan interior mewah dan fitur keselamatan canggih, cocok untuk petualangan keluarga atau bisnis."
     },
     {
       "kode_produk": "K002",
       "nama_produk": "Alphard",
       "harga": 3000000,
       "stok": 50,
-      "gambar": "../../public/img/mobil2.jpg"
+      "gambar": "../../public/img/mobil2.jpg",
+      "deskripsi": "Toyota Alphard adalah MPV premium dengan desain elegan dan ruang kabin yang luas. Sempurna untuk perjalanan keluarga atau eksekutif dengan kenyamanan maksimal dan teknologi modern."
     },
     {
       "kode_produk": "K003",
       "nama_produk": "Terios",
       "harga": 600000,
       "stok": 5,
-      "gambar": "../../public/img/mobil3.png"
+      "gambar": "../../public/img/mobil3.png",
+      "deskripsi": "Daihatsu Terios adalah SUV kompak yang lincah dan hemat bahan bakar. Ideal untuk perjalanan kota atau petualangan ringan dengan desain sporty dan handling yang responsif."
     },
     {
       "kode_produk": "K004",
       "nama_produk": "Avanza",
       "harga": 500000,
       "stok": 10,
-      "gambar": "../../public/img/mobil4.webp"
+      "gambar": "../../public/img/mobil4.webp",
+      "deskripsi": "Toyota Avanza adalah MPV keluarga yang praktis dan terjangkau. Dengan kapasitas 7 penumpang dan konsumsi bahan bakar yang efisien, cocok untuk perjalanan sehari-hari."
     },
     {
       "kode_produk": "K005",
       "nama_produk": "Wuling",
       "harga": 600000,
       "stok": 0,
-      "gambar": "../../public/img/mobil5.jpg"
+      "gambar": "../../public/img/mobil5.jpg",
+      "deskripsi": "Wuling Confero adalah MPV ekonomis dengan kabin luas dan fitur modern. Dirancang untuk memberikan kenyamanan bagi keluarga dengan harga yang bersahabat."
     }
   ]
 }

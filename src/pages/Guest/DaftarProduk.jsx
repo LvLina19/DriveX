@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import products from "../../data/products.json";
 
@@ -28,14 +29,22 @@ export default function DaftarProduk() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.products.map((product, index) => (
-            <div key={index} className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100">
+          {products.products.map((product) => (
+            <Link
+              key={product.kode_produk}
+              to={`/detail/${product.kode_produk}`}
+              className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
               <div className="relative overflow-hidden">
-                <img src={product.gambar} alt={product.nama_produk} className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" />
+                <img
+                  src={product.gambar}
+                  alt={product.nama_produk}
+                  className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-blue-600 shadow-lg">
-                  Tersedia
+                  {product.stok > 0 ? "Tersedia" : "Habis"}
                 </div>
               </div>
               <div className="p-6 relative">
@@ -50,14 +59,19 @@ export default function DaftarProduk() {
                 <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
                   <span className="flex items-center justify-center space-x-2">
                     <span>Sewa Sekarang</span>
-                    <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                     </svg>
                   </span>
                 </button>
                 <div className="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mt-4 transition-all duration-500 rounded-full"></div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

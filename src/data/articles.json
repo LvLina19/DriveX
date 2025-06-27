@@ -1,0 +1,42 @@
+[
+  {
+    "id": "A001",
+    "judul": "Tips Aman Mengemudi di Musim Hujan",
+    "kategori": "Tips Perjalanan",
+    "tanggal": "2025-06-20",
+    "isi_singkat": "Pelajari tips penting untuk mengemudi aman di musim hujan agar perjalanan tetap nyaman.",
+    "gambar": "../../public/img/article1.jpg"
+  },
+  {
+    "id": "A002",
+    "judul": "Promo Spesial Sewa Mobil, Ayo Serbu, kapan lagi",
+    "kategori": "Promo",
+    "tanggal": "2025-06-25",
+    "isi_singkat": "Dapatkan diskon hingga 20% untuk sewa mobil di bulan Juli 2025!",
+    "gambar": "../../public/img/article2.jpg"
+  },
+  {
+    "id": "A003",
+    "judul": "Drive-X Resmi Buka Cabang Baru di Surabaya",
+    "kategori": "Berita",
+    "tanggal": "2025-06-27",
+    "isi_singkat": "Kami senang mengumumkan pembukaan cabang baru di Surabaya untuk melayani lebih banyak pelanggan.",
+    "gambar": "../../public/img/article3.jpeg"
+  },
+  {
+    "id": "A004",
+    "judul": "Cara Merawat Mobil Sebelum Liburan",
+    "kategori": "Tips Perjalanan",
+    "tanggal": "2025-06-22",
+    "isi_singkat": "Persiapkan mobil Anda dengan perawatan sederhana sebelum memulai liburan panjang.",
+    "gambar": "../../public/img/article4.jpeg"
+  },
+  {
+    "id": "A005",
+    "judul": "Diskon Ekstra untuk Pelanggan Setia",
+    "kategori": "Promo",
+    "tanggal": "2025-06-26",
+    "isi_singkat": "Nikmati diskon tambahan 10% untuk pelanggan yang sudah sewa lebih dari 3 kali.",
+    "gambar": "../../public/img/article5.png"
+  }
+]

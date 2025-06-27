@@ -75,6 +75,14 @@ export default function HeaderGuest() {
             Testimoni
           </a>
           <a
+            href="/Artikel"
+            className={`${
+              activeSection === "/Artikel" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            Artikel
+          </a>
+          <a
             href="/#faq"
             className={`${
               activeSection === "#faq" ? "text-blue-500" : "text-gray-800"
