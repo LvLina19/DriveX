@@ -15,7 +15,8 @@ const ProductDetail = React.lazy(() => import("./pages/Admin/CRUD/ProductDetail"
 const DetailProduk = React.lazy(() => import("./pages/Guest/DetailProduk"));
 const Artikel = React.lazy(() => import("./pages/Guest/Artikel"));
 const DetailArtikel = React.lazy(() => import("./pages/Guest/DetailArtikel"));
-
+const Karir = React.lazy(() => import("./pages/Guest/Karir"));
+const Pemesanan = React.lazy(() => import("./pages/Guest/Pemesanan"));
 
 function App() {
   return (
@@ -26,6 +27,8 @@ function App() {
           <Route path="/detail/:kode_produk" element={<DetailProduk />} /> 
           <Route path="/artikel" element={<Artikel />} />
           <Route path="/artikel/:id" element={<DetailArtikel />} />
+          <Route path="/karir" element={<Karir />} />
+          <Route path="/pemesanan" element={<Pemesanan />} />
         </Route>
 
         <Route element={<AuthLayout />}>

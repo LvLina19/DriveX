@@ -64,13 +64,19 @@ export default function DetailProduk() {
                 <AiFillStar className="text-sm" />
                 <span className="text-sm text-gray-600">4.8</span>
               </div>
-              <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                <span className="flex items-center justify-center space-x-2">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeIn delay-800">
+              <Link
+                to="/pemesanan"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                <div className="relative flex items-center gap-2">
                   <BiRocket className="text-xl" />
                   <span>Sewa Sekarang</span>
                   <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </button>
+                </div>
+              </Link>
+            </div>
             </div>
           </div>
 

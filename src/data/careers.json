@@ -1,0 +1,26 @@
+[
+  {
+    "id": "C001",
+    "judul": "Customer Service Representative",
+    "lokasi": "Jakarta",
+    "tanggal_tutup": "2025-07-15",
+    "deskripsi_singkat": "Bantu pelanggan dengan pertanyaan dan layanan sewa mobil. Pengalaman 1+ tahun di bidang layanan pelanggan diutamakan.",
+    "gambar": "../../public/img/career1.jpg"
+  },
+  {
+    "id": "C002",
+    "judul": "Marketing Specialist",
+    "lokasi": "Surabaya",
+    "tanggal_tutup": "2025-07-20",
+    "deskripsi_singkat": "Kembangkan strategi pemasaran digital untuk meningkatkan visibilitas Drive-X. Pengalaman di digital marketing diperlukan.",
+    "gambar": "../../public/img/career1.jpg"
+  },
+  {
+    "id": "C003",
+    "judul": "Fleet Maintenance Technician",
+    "lokasi": "Bandung",
+    "tanggal_tutup": "2025-07-25",
+    "deskripsi_singkat": "Tangani perawatan dan perbaikan armada kendaraan kami. Latar belakang teknik otomotif diperlukan.",
+    "gambar": "../../public/img/career1.jpg"
+  }
+]

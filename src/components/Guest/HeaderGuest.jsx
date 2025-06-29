@@ -82,6 +82,14 @@ export default function HeaderGuest() {
           >
             Artikel
           </a>
+           <a
+            href="/Karir"
+            className={`${
+              activeSection === "/Karir" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            Karir
+          </a>
           <a
             href="/#faq"
             className={`${

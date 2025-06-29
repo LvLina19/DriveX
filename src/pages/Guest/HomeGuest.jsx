@@ -3,6 +3,7 @@ import { MdDirectionsCar } from "react-icons/md";
 import { AiFillStar } from "react-icons/ai";
 import { BiRocket, BiPlay } from "react-icons/bi";
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom"; 
 import Tentang from "./Tentang";
 import DaftarProduk from "./DaftarProduk";
 import Testi from "./Testi";
@@ -44,14 +45,17 @@ export default function HomeGuest() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeIn delay-800">
-              <a href="#topProduk" className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+              <Link
+                to="/pemesanan"
+                className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 <div className="relative flex items-center gap-2">
                   <BiRocket className="text-xl" />
                   <span>Sewa Sekarang</span>
                   <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -108,7 +112,7 @@ export default function HomeGuest() {
       </section>
       <Tentang />
       <DaftarProduk />
-      <TimKita/>
+      <TimKita />
       <Testi />
       <Faq />
     </div>

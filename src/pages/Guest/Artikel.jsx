@@ -32,12 +32,7 @@ export default function Artikel() {
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-16 right-12 w-32 h-32 bg-blue-200 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-16 left-12 w-24 h-24 bg-indigo-200 rounded-full opacity-30 animate-bounce"></div>
-        <div className="absolute top-1/3 left-8 w-16 h-16 bg-purple-200 rounded-full opacity-25"></div>
-      </div>
-
+     <br /><br />
       <div className="container mx-auto px-6 relative z-10 max-w-screen-xl">
         <div className="text-center mb-16">
           <div className="inline-block mb-4">

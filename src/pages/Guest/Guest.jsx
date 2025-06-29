@@ -7,7 +7,7 @@ import { FiArrowRight } from "react-icons/fi";
 import React from "react";
 import testi from "../../data/testi.json";
 import products from "../../data/products.json";
-
+import { Link } from "react-router-dom"; 
 
 export default function Guest() {
   return (
@@ -56,8 +56,8 @@ export default function Guest() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeIn delay-800">
-              <a
-                href="#topProduk"
+              <Link
+                to="/pemesanan"
                 className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
@@ -66,7 +66,7 @@ export default function Guest() {
                   <span>Sewa Sekarang</span>
                   <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
