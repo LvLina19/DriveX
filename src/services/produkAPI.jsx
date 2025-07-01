@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const API_URL = "https://<project-url>/rest/v1/notes"
-const API_KEY = "<no-api-key>"
+const API_URL = "https://smdpmxflyphhvjjatrls.supabase.co/rest/v1/products"
+const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNtZHBteGZseXBoaHZqamF0cmxzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEzNTY5NTMsImV4cCI6MjA2NjkzMjk1M30.1YWbYCSy3Yfx_gZ0h4ConwgeTCqeENMTLV-WVGW8_Ao"
 
 const headers = {
     apikey: API_KEY,
@@ -9,7 +9,7 @@ const headers = {
     "Content-Type": "application/json",
 }
 
-export const notesAPI = {
+export const produkAPI = {
     async fetchNotes() {
         const response = await axios.get(API_URL, { headers })
         return response.data

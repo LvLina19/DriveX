@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import { FaEdit } from "react-icons/fa";
+import { produkAPI } from "../../../services/produkApi";
 
 export default function admin() {
   const [products, setProducts] = useState(allProducts.products); // data produk dari JSON
@@ -18,10 +19,18 @@ export default function admin() {
   const [newProduct, setNewProduct] = useState({ nama_produk: "", harga: "", stok: "" });
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // Fungsi filter berdasarkan query pencarian
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   const filteredProducts = products.filter((product) =>
     product.nama_produk.toLowerCase().includes(query.toLowerCase())
   );
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
@@ -81,7 +90,7 @@ export default function admin() {
               placeholder="Cari produk..."
               className="flex-grow p-3 w-full bg-white rounded-2xl shadow-lg"
             />
-            <button onClick={() =>setIsAddModalOpen(true)}
+            <button onClick={() => setIsAddModalOpen(true)}
               className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
               <div className="relative flex items-center gap-2">
                 <CgAdd className="text-xl" />
@@ -100,7 +109,7 @@ export default function admin() {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100 text-sm text-gray-800">
-              {products.map((product, index) => (
+              {currentProducts.map((product, index) => (
                 <tr
                   key={product.id}
                   className="hover:bg-gray-50 transition-colors duration-200"
@@ -133,6 +142,36 @@ export default function admin() {
               ))}
             </tbody>
           </table>
+          <div className="mt-6 flex justify-center items-center gap-2">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1 text-sm bg-white rounded hover:bg-gray-300 disabled:opacity-50"
+            >
+              Prev
+            </button>
+
+            {[...Array(totalPages)].map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`px-3 py-1 text-sm rounded ${currentPage === i + 1
+                  ? "bg-purple-600 text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
+                  }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="px-3 py-1 text-sm bg-white rounded hover:bg-gray-300 disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </section>
 
@@ -175,7 +214,7 @@ export default function admin() {
                 required
               />
               <div className="flex justify-end gap-2 pt-4">
-              {/* className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300"> */}
+                {/* className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300"> */}
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
@@ -237,13 +276,13 @@ export default function admin() {
                 <button
                   type="button"
                   onClick={handleCloseModal}
-                  className="px-4 py-2 rounded-xl bg-gray-300 hover:bg-gray-400 text-gray-700"
+                  className="border-2 border-blue-500 text-blue-700 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:bg-blue-400 hover:text-white transition duration-300"
                 >
                   Batal
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white"
+                  className="border-2 border-blue-400 text-white from-blue-400 to-purple-400  text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition duration-300"
                 >
                   Update
                 </button>
