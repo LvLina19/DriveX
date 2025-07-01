@@ -6,7 +6,7 @@ export default function HeaderDashboard() {
   const [activeSection, setActiveSection] = useState("");
 
   const handleScroll = () => {
-    const sections = ["#about", "#topProduk", "#testi", "#kontak"];
+    const sections = ["#tentang", "#topProduk","#tim", "#testi", "#kontak","#faq"];
     const sectionInView = sections.find((section) => {
       const element = document.querySelector(section);
       const rect = element?.getBoundingClientRect();
@@ -34,7 +34,7 @@ export default function HeaderDashboard() {
           <a
             href="/dashboard"
             className={`${
-              location.pathname === "/dashboard" && activeSection === ""
+              location.pathname === "/" && activeSection === ""
                 ? "text-blue-500"
                 : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -75,7 +75,31 @@ export default function HeaderDashboard() {
             Testimoni
           </a>
           <a
-            href="/dashboard#kontak"
+            href="/ArtikelAdmin"
+            className={`${
+              activeSection === "/ArtikelAdmin" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            Artikel
+          </a>
+           <a
+            href="/KarirAdmin"
+            className={`${
+              activeSection === "/KarirAdmin" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            Karir
+          </a>
+          <a
+            href="/dashboard#faq"
+            className={`${
+              activeSection === "#faq" ? "text-blue-500" : "text-gray-800"
+            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
+          >
+            FAQ
+          </a>
+          <a
+            href="/dashboard#faq"
             className={`${
               activeSection === "#kontak" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -100,5 +124,5 @@ export default function HeaderDashboard() {
         </div>
       </div>
     </header>
-  );
+  );
 }

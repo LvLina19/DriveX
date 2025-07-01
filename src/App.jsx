@@ -1,6 +1,13 @@
 import React, { Suspense } from "react";
 import './assets/tailwind.css';
 import { Route, Routes } from "react-router-dom";
+import HeaderAdmin from "./components/Admin/HeaderAdmin";
+import DashboardLayout from "./layouts/DashboardLayout";
+const DetailProdukAdmin = React.lazy(() => import("./pages/Admin/Dashboard/DetailProduk"))
+const ArtikelAdmin = React.lazy(() => import("./pages/Admin/Dashboard/ArtikelAdmin"))
+const DetailArtikelAdmin = React.lazy(() => import("./pages/Admin/Dashboard/DetailArtikelAdmin"))
+const KarirAdmin = React.lazy(() => import("./pages/Admin/Dashboard/KarirAdmin"))
+const PemesananAdmin = React.lazy(() => import("./pages/Admin/Dashboard/PemesananAdmin"))
 const Admin = React.lazy(() => import("./pages/Admin/CRUD/Admin"))
 const HomeAdmin = React.lazy(() => import("./pages/Admin/Dashboard/HomeAdmin"))
 const Guest = React.lazy(() => import("./pages/Guest/HomeGuest"))
@@ -39,9 +46,17 @@ function App() {
 
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
+        </Route>
+        <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<HomeAdmin />} />
           <Route path="/admin/:id" element={<ProductDetail />} />
+          <Route path="/detailAdmin/:kode_produk" element={<DetailProdukAdmin />} /> 
+          <Route path="/artikelAdmin" element={<ArtikelAdmin/>} />
+          <Route path="/artikelAdmin/:id" element={<DetailArtikelAdmin />} />
+          <Route path="/karirAdmin" element={<KarirAdmin/>} />
+          <Route path="/pemesananAdmin" element={<PemesananAdmin />} />
         </Route>
+
         
       </Routes>
     </Suspense>
