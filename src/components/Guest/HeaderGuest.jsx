@@ -6,7 +6,7 @@ export default function HeaderGuest() {
   const [activeSection, setActiveSection] = useState("");
 
   const handleScroll = () => {
-    const sections = ["#tentang", "#topProduk","#tim", "#testi", "#kontak","#faq"];
+    const sections = [ "#topProduk", "#testi", "#kontak"];
     const sectionInView = sections.find((section) => {
       const element = document.querySelector(section);
       const rect = element?.getBoundingClientRect();
@@ -41,14 +41,7 @@ export default function HeaderGuest() {
           >
             Beranda
           </a>
-          <a
-            href="/#tentang"
-            className={`${
-              activeSection === "#tentang" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Tentang
-          </a>
+        
           <a
             href="/#topProduk"
             className={`${
@@ -57,14 +50,7 @@ export default function HeaderGuest() {
           >
             Produk
           </a>
-          <a
-            href="/#tim"
-            className={`${
-              location.pathname === "#tim" ? "text-blue-500" : "text-gray-800"
-            } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
-          >
-            Tim 
-          </a>
+         
 
           <a
             href="/#testi"
@@ -88,23 +74,23 @@ export default function HeaderGuest() {
               activeSection === "/Karir" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            Karir
+            Lowongan
           </a>
           <a
-            href="/#faq"
+            href="/simulasi"
             className={`${
-              activeSection === "#faq" ? "text-blue-500" : "text-gray-800"
+              activeSection === "/simulasi" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            FAQ
+            Simulasi
           </a>
           <a
-            href="/#kontak"
+            href="/galeri"
             className={`${
-              activeSection === "#kontak" ? "text-blue-500" : "text-gray-800"
+              activeSection === "/galeri" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
           >
-            Kontak
+            Galeri
           </a>
         </nav>
 

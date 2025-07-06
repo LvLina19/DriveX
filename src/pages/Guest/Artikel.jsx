@@ -34,7 +34,7 @@ export default function Artikel() {
     <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
      <br /><br />
       <div className="container mx-auto px-6 relative z-10 max-w-screen-xl">
-        <div className="text-center mb-16">
+        <div className="text-center mb-9">
           <div className="inline-block mb-4">
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">Berita & Tips</span>
           </div>

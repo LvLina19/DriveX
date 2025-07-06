@@ -1,0 +1,68 @@
+[
+   {
+    "id": "M001",
+    "type": "image",
+    "url": "/img/galeri1.jpg",
+    "judul": "Perjalanan dengan Fortuner",
+    "deskripsi": "Petualangan seru di pegunungan dengan Toyota Fortuner yang memberikan kenyamanan maksimal di segala medan.",
+    "tanggal": "2024-03-15",
+    "views": "1.2k"
+  },
+  {
+    "id": "M002",
+    "type": "video",
+    "url": "/video/galeri2.mp4",
+    "thumbnail": "/img/galeri2-thumb.png",
+    "judul": "Ulasan Alphard",
+    "deskripsi": "Video ulasan lengkap fitur unggulan Toyota Alphard yang menjadi pilihan utama untuk kenyamanan premium.",
+    "tanggal": "2024-03-12",
+    "views": "2.5k"
+  },
+  {
+    "id": "M003",
+    "type": "image",
+    "url": "/img/galeri3.jpg",
+    "judul": "Keliling Kota dengan Terios",
+    "deskripsi": "Pengalaman mengemudi yang menyenangkan di perkotaan dengan Daihatsu Terios yang lincah dan efisien.",
+    "tanggal": "2024-03-10",
+    "views": "890"
+  },
+  {
+    "id": "M004",
+    "type": "video",
+    "url": "/video/galeri4.mp4",
+    "thumbnail": "/img/galeri4-thumb.png", 
+    "judul": "Demo Avanza",
+    "deskripsi": "Demonstrasi komprehensif kenyamanan dan kepraktisan Toyota Avanza untuk kebutuhan keluarga modern.",
+    "tanggal": "2024-03-08",
+    "views": "3.1k"
+  },
+  {
+    "id": "M005",
+    "type": "image",
+    "url": "/img/galeri5.jpg",
+    "judul": "Eksplorasi dengan Pajero Sport",
+    "deskripsi": "Menjelajahi alam bebas dengan Mitsubishi Pajero Sport yang tangguh dan bertenaga untuk petualangan ekstrem.",
+    "tanggal": "2024-03-05",
+    "views": "1.8k"
+  },
+  {
+    "id": "M006",
+    "type": "video",
+    "url": "/video/galeri6.mp4",
+    "thumbnail": "/img/galeri6-thumb.png", 
+    "judul": "Test Drive Innova",
+    "deskripsi": "Video test drive Toyota Innova yang menunjukkan performa handal dan ruang kabin yang lapang untuk keluarga.",
+    "tanggal": "2024-03-03",
+    "views": "2.2k"
+  },
+  {
+    "id": "M007",
+    "type": "image",
+    "url": "/img/galeri7.jpg",
+    "judul": "Touring dengan Xpander",
+    "deskripsi": "Perjalanan jauh dengan Mitsubishi Xpander yang memberikan kenyamanan dan efisiensi bahan bakar terbaik.",
+    "tanggal": "2024-03-01",
+    "views": "1.5k"
+  }
+]

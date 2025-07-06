@@ -24,6 +24,8 @@ const Artikel = React.lazy(() => import("./pages/Guest/Artikel"));
 const DetailArtikel = React.lazy(() => import("./pages/Guest/DetailArtikel"));
 const Karir = React.lazy(() => import("./pages/Guest/Karir"));
 const Pemesanan = React.lazy(() => import("./pages/Guest/Pemesanan"));
+const SimulasiGuest = React.lazy(() => import("./pages/Guest/SimulasiGuest"));
+const GaleriMedia = React.lazy(() => import("./pages/Guest/GaleriMedia"));
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
           <Route path="/artikel/:id" element={<DetailArtikel />} />
           <Route path="/karir" element={<Karir />} />
           <Route path="/pemesanan" element={<Pemesanan />} />
+          <Route path="/simulasi" element={<SimulasiGuest />} />
+          <Route path="/galeri" element={<GaleriMedia />} />
         </Route>
 
         <Route element={<AuthLayout />}>
