@@ -9,6 +9,26 @@ export default function GaleriMedia() {
 
   const filteredMedia = filter === 'all' ? media : media.filter(item => item.type === filter);
 
+  // Fungsi untuk mengkonversi URL YouTube ke embed URL
+  const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+    
+    // Regex untuk berbagai format URL YouTube
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    
+    if (match && match[2].length === 11) {
+      return `https://www.youtube.com/embed/${match[2]}`;
+    }
+    
+    return null;
+  };
+
+  // Fungsi untuk cek apakah URL adalah YouTube
+  const isYouTubeUrl = (url) => {
+    return url && (url.includes('youtube.com') || url.includes('youtu.be'));
+  };
+
   const openModal = (item) => {
     setSelectedMedia(item);
   };
@@ -33,7 +53,7 @@ export default function GaleriMedia() {
         <div className="absolute top-1/3 left-12 w-24 h-24 bg-purple-200 rounded-full opacity-25"></div>
         <div className="absolute top-2/3 right-8 w-16 h-16 bg-pink-200 rounded-full opacity-20"></div>
       </div>
-<br /><br />
+
       <div className="container mx-auto px-6 relative z-10 max-w-7xl">
         
         <div className="text-center mb-16">
@@ -201,15 +221,28 @@ export default function GaleriMedia() {
                     className="w-full h-full object-contain"
                   />
                 ) : (
-                  <video
-                    controls
-                    className="w-full h-full object-contain"
-                    autoPlay
-                    poster={selectedMedia.thumbnail}
-                  >
-                    <source src={selectedMedia.url} type="video/mp4" />
-                    Video tidak didukung.
-                  </video>
+                  <>
+                    {isYouTubeUrl(selectedMedia.url) ? (
+                      <iframe
+                        src={getYouTubeEmbedUrl(selectedMedia.url)}
+                        title={selectedMedia.judul}
+                        className="w-full h-full"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                    ) : (
+                      <video
+                        controls
+                        className="w-full h-full object-contain"
+                        autoPlay
+                        poster={selectedMedia.thumbnail}
+                      >
+                        <source src={selectedMedia.url} type="video/mp4" />
+                        Video tidak didukung oleh browser Anda.
+                      </video>
+                    )}
+                  </>
                 )}
               </div>
               
