@@ -1,13 +1,52 @@
 import { useParams, Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import { BiRocket, BiPlay } from "react-icons/bi";
-import { FiArrowRight, FiArrowLeft } from "react-icons/fi"; 
-import products from "../../../data/products.json";
+import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+// import products from "../../../data/products.json";
+import { produkAPI } from "../../../services/produkApi";
 import testi from "../../../data/testi.json";
+import { useState,useEffect } from "react";
 
 export default function DetailProdukAdmin() {
   const { kode_produk } = useParams();
-  const product = products.products.find((p) => p.kode_produk === kode_produk);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProduct = async () => {
+      try {
+        const data = await produkAPI.fetchProducts();
+        const found = data.find((p) => String(p.id) === kode_produk); // pastikan pencocokan id
+        setProduct(found || null);
+      } catch (err) {
+        console.error("Gagal memuat produk", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProduct();
+  }, [kode_produk]);
+
+  if (loading) {
+    return (
+      <section className="min-h-screen flex items-center justify-center">
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (!product) {
+    return (
+      <section className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-20">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-3xl font-semibold text-gray-800">
+            Produk tidak ditemukan
+          </h2>
+        </div>
+      </section>
+    );
+  }
 
   if (!product) {
     return (
@@ -23,7 +62,7 @@ export default function DetailProdukAdmin() {
 
   return (
     <section className="relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden py-20">
-      
+
       <br /><br />
       <div className="container mx-auto px-6 relative z-10 max-w-screen-xl">
         <div className="mb-8">
@@ -41,7 +80,7 @@ export default function DetailProdukAdmin() {
             <div className="relative overflow-hidden">
               <img
                 src={product.gambar}
-                alt={product.nama_produk}
+                alt={product.nama}
                 className="w-full h-96 object-cover group-hover:scale-110 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -51,13 +90,13 @@ export default function DetailProdukAdmin() {
             </div>
             <div className="p-6">
               <h3 className="text-2xl font-RethinkSans-SemiBold text-gray-800 mb-3">
-                {product.nama_produk}
+                {product.nama}
               </h3>
               <p className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent mb-4">
                 Rp {product.harga.toLocaleString()}/hari
               </p>
               <p className="text-gray-600 leading-relaxed mb-4">
-                {product.deskripsi}
+                {product.detail}
               </p>
               <p className="text-sm text-gray-500 mb-4">Stok: {product.stok}</p>
               <div className="flex items-center space-x-1 text-yellow-400 mb-4">
@@ -65,18 +104,18 @@ export default function DetailProdukAdmin() {
                 <span className="text-sm text-gray-600">4.8</span>
               </div>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 animate-fadeIn delay-800">
-              <Link
-                to="/pemesanan"
-                className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                <div className="relative flex items-center gap-2">
-                  <BiRocket className="text-xl" />
-                  <span>Sewa Sekarang</span>
-                  <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
-                </div>
-              </Link>
-            </div>
+                <Link
+                  to="/pemesanan"
+                  className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-8 py-4 rounded-2xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                  <div className="relative flex items-center gap-2">
+                    <BiRocket className="text-xl" />
+                    <span>Sewa Sekarang</span>
+                    <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -92,7 +131,7 @@ export default function DetailProdukAdmin() {
                   className="flex items-start space-x-4 border-b border-gray-100 pb-4"
                 >
                   <img
-                    src={review.avatar} 
+                    src={review.avatar}
                     className="w-12 h-12 rounded-full object-cover"
                   />
                   <div>

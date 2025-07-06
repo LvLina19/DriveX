@@ -1,30 +1,31 @@
 import { CgAdd } from "react-icons/cg";
 import { AiOutlineDelete } from "react-icons/ai";
-import HeaderAdmin from "../../../components/Admin/HeaderAdmin";
-import allProducts from "../../../data/products.json";
-import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
-import { FaEdit } from "react-icons/fa";
 import { produkAPI } from "../../../services/produkApi";
 
 export default function admin() {
-  const [products, setProducts] = useState(allProducts.products); // data produk dari JSON
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editData, setEditData] = useState({});
   // Tambahkan ke dalam komponen di bagian atas sebelum return
-  const [newProduct, setNewProduct] = useState({ nama_produk: "", harga: "", stok: "" });
+  const [dataForm, setDataForm] = useState({
+    nama: "", detail: "", stok: "", harga: "", gambar: ""
+  })
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const [products, setProducts] = useState([])
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
   const filteredProducts = products.filter((product) =>
-    product.nama_produk.toLowerCase().includes(query.toLowerCase())
+    product.nama.toLowerCase().includes(query.toLowerCase())
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -32,17 +33,59 @@ export default function admin() {
   const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
 
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    const idBaru = Date.now(); // Atau logika lain untuk ID unik
-    const produkBaru = { ...newProduct, id: idBaru };
-    setProducts([...products, produkBaru]);
-    setNewProduct({ nama_produk: "", harga: "", stok: "" });
-    setIsAddModalOpen(false);
+  const handleAddProduct = async (e) => {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await produkAPI.createProduct(dataForm)
+
+      setSuccess("Catatan berhasil ditambahkan!")
+
+      // Kosongkan Form setelah Success
+      setDataForm({ nama: "", detail: "", stok: "", harga: "", gambar: "" })
+
+      // Hilangkan pesan Success setelah 3 detik
+      setTimeout(() => setSuccess(""), 3000)
+
+      //Panggil Ulang loadNotes untuk refresh data
+      loadProduct()
+
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`);
+    } finally {
+      setLoading(false)
+    }
+    // e.preventDefault();
+    // const idBaru = Date.now(); // Atau logika lain untuk ID unik
+    // const produkBaru = { ...newProduct, id: idBaru };
+    // setProducts([...products, produkBaru]);
+    // setNewProduct({ nama_produk: "", harga: "", stok: "" });
+    // setIsAddModalOpen(false);
   };
+
+  // Handle perubahan nilai input form
+  const handleChange = (evt) => {
+    const { name, value } = evt.target
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    })
+  }
 
   // Fungsi Edit produk (contoh: tampilkan data ke form/modal, disesuaikan kebutuhanmu)
   const handleEdit = (product) => {
+    setDataForm({
+      id: product.id,          // tambahkan id agar tahu mana yang diupdate
+      nama: product.nama,
+      detail: product.detail,
+      stok: product.stok,
+      harga: product.harga,
+      gambar: product.gambar
+    })
     setEditData(product);
     setIsModalOpen(true);
   };
@@ -52,24 +95,96 @@ export default function admin() {
     setEditData({});
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const updated = products.map((p) =>
-      p.id === editData.id ? editData : p
-    );
-    setProducts(updated);
-    handleCloseModal();
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+
+    if (!dataForm.id) {
+      setError("ID tidak ditemukan. Tidak bisa update.")
+      return
+    }
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await produkAPI.updateProduct(dataForm.id, {
+        nama: dataForm.nama,
+        detail: dataForm.detail,
+        stok: dataForm.stok,
+        harga: dataForm.harga,
+        gambar: dataForm.gambar,
+      })
+
+      setSuccess("Produk berhasil diperbarui!")
+
+      // Reset form
+      setIsModalOpen(false);
+      setDataForm({ nama: "", detail: "", stok: "", harga: "", gambar: "" })
+
+      setTimeout(() => setSuccess(""), 3000)
+
+      // Refresh data
+      loadProduct()
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
+    // e.preventDefault();
+    // const updated = products.map((p) =>
+    //   p.id === editData.id ? editData : p
+    // );
+    // setProducts(updated);
+    // handleCloseModal();
   };
 
   // Fungsi Hapus produk
-  const handleDelete = (id) => {
-    const konfirmasi = confirm("Yakin ingin menghapus produk ini?");
-    if (!konfirmasi) return;
+  const handleDelete = async (id) => {
+    const konfirmasi = confirm("Yakin ingin menghapus catatan ini?")
+    if (!konfirmasi) return
 
-    const updatedProducts = products.filter((p) => p.id !== id);
-    setProducts(updatedProducts);
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await produkAPI.deleteProduct(id)
+
+      // Refresh data
+      loadProduct()
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
+
+    // const konfirmasi = confirm("Yakin ingin menghapus produk ini?");
+    // if (!konfirmasi) return;
+
+    // const updatedProducts = products.filter((p) => p.id !== id);
+    // setProducts(updatedProducts);
   };
 
+  // Load data saat pertama di-render
+  useEffect(() => {
+    loadProduct()
+  }, [])
+
+  // Memanggil fetchNotes beserta error/loading handling
+  const loadProduct = async () => {
+    try {
+      setLoading(true)
+      setError("")
+      const data = await produkAPI.fetchProducts()
+      setProducts(data)
+    } catch (err) {
+      setError("Gagal memuat catatan")
+      console.error(err)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <div className="guest-page">
@@ -103,6 +218,7 @@ export default function admin() {
               <tr className="bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 text-white text-left text-sm font-semibold">
                 <th className="px-4 py-3">No</th>
                 <th className="px-4 py-3">Nama</th>
+                <th className="px-4 py-3">Detail</th>
                 <th className="px-4 py-3">Harga</th>
                 <th className="px-4 py-3">Stok</th>
                 <th className="px-4 py-3"></th>
@@ -119,9 +235,10 @@ export default function admin() {
                   </td>
                   <td className="px-6 py-4">
                     <Link to={`/admin/${product.id}`}>
-                      {product.nama_produk}
+                      {product.nama}
                     </Link>
                   </td>
+                  <td className="px-6 py-4">{product.detail}</td>
                   <td className="px-6 py-4">Rp {product.harga}</td>
                   <td className="px-6 py-4">{product.stok}</td>
                   <td className="px-6 py-4">
@@ -185,36 +302,50 @@ export default function admin() {
             <form onSubmit={handleAddProduct} className="space-y-4">
               <input
                 type="text"
-                value={newProduct.nama_produk}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, nama_produk: e.target.value })
-                }
+                name="nama"
+                value={dataForm.nama}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Nama Produk"
                 required
               />
               <input
                 type="number"
-                value={newProduct.harga}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, harga: parseInt(e.target.value) })
-                }
+                name="harga"
+                value={dataForm.harga}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
-                placeholder="Harga"
+                placeholder="Harga Produk"
                 required
               />
               <input
                 type="number"
-                value={newProduct.stok}
-                onChange={(e) =>
-                  setNewProduct({ ...newProduct, stok: parseInt(e.target.value) })
-                }
+                name="stok"
+                value={dataForm.stok}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
-                placeholder="Stok"
+                placeholder="Stok Produk"
+                required
+              />
+              <input
+                type="text"
+                name="detail"
+                value={dataForm.detail}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Detail Produk"
+                required
+              />
+              <input
+                type="text"
+                name="gambar"
+                value={dataForm.gambar}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Gambar Produk"
                 required
               />
               <div className="flex justify-end gap-2 pt-4">
-                {/* className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300"> */}
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
@@ -244,33 +375,43 @@ export default function admin() {
             <form onSubmit={handleUpdate} className="space-y-4">
               <input
                 type="text"
-                value={editData.nama_produk}
-                onChange={(e) =>
-                  setEditData({ ...editData, nama_produk: e.target.value })
-                }
+                value={dataForm.nama}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Nama Produk"
                 required
               />
               <input
                 type="number"
-                value={editData.harga}
-                onChange={(e) =>
-                  setEditData({ ...editData, harga: parseInt(e.target.value) })
-                }
+                value={dataForm.harga}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Harga"
                 required
               />
               <input
                 type="number"
-                value={editData.stok}
-                onChange={(e) =>
-                  setEditData({ ...editData, stok: parseInt(e.target.value) })
-                }
+                value={dataForm.stok}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Stok"
                 required
+              />
+              <input
+                type="text"
+                name="detail"
+                value={dataForm.detail}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Detail Produk"
+              />
+              <input
+                type="text"
+                name="gambar"
+                value={dataForm.gambar}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="URL Gambar"
               />
               <div className="flex justify-end gap-2 pt-4">
                 <button

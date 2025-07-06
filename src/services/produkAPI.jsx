@@ -10,13 +10,20 @@ const headers = {
 }
 
 export const produkAPI = {
-    async fetchNotes() {
+    async fetchProducts() {
         const response = await axios.get(API_URL, { headers })
         return response.data
     },
 
-    async createNote(data) {
+    async createProduct(data) {
         const response = await axios.post(API_URL, data, { headers })
+        return response.data
+    },
+    async deleteProduct(id) {
+        await axios.delete(`${API_URL}?id=eq.${id}`, { headers })
+    },
+    async updateProduct(id, data) {
+        const response = await axios.patch(`${API_URL}?id=eq.${id}`, data, { headers })
         return response.data
     }
 }

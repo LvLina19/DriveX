@@ -1,32 +1,59 @@
 import { AiFillStar } from "react-icons/ai";
-import products from "../../../data/products.json";
+// import products from "../../../data/products.json";
 import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CgAdd } from "react-icons/cg";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import allProducts from "../../../data/products.json";
+import { produkAPI } from "../../../services/produkApi";
 
 export default function DaftarProduk() {
-  const [products, setProducts] = useState(allProducts.products); // data produk dari JSON
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
+  const [products, setProducts] = useState([]); // data produk dari JSON
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editData, setEditData] = useState({});
   // Tambahkan ke dalam komponen di bagian atas sebelum return
-  const [newProduct, setNewProduct] = useState({ nama_produk: "", harga: "", stok: "" });
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [dataForm, setDataForm] = useState({
+    nama: "", detail: "", stok: "", harga: "", gambar: ""
+  })
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    const idBaru = Date.now(); // Atau logika lain untuk ID unik
-    const produkBaru = { ...newProduct, id: idBaru };
-    setProducts([...products, produkBaru]);
-    setNewProduct({ nama_produk: "", harga: "", stok: "" });
-    setIsAddModalOpen(false);
+  // Pagination
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  const filteredProducts = products.filter((product) =>
+    product.nama.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentProducts = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+  const [editData, setEditData] = useState([]);
+
+  const loadProduct = async () => {
+    try {
+      const data = await produkAPI.fetchProducts();
+      setProducts(data);
+    } catch (err) {
+      setError("Gagal memuat produk");
+      console.error(err);
+    }
   };
 
   // Fungsi Edit produk (contoh: tampilkan data ke form/modal, disesuaikan kebutuhanmu)
   const handleEdit = (product) => {
+    setDataForm({
+      id: product.id,          // tambahkan id agar tahu mana yang diupdate
+      nama: product.nama,
+      detail: product.detail,
+      stok: product.stok,
+      harga: product.harga,
+      gambar: product.gambar
+    })
     setEditData(product);
     setIsModalOpen(true);
   };
@@ -36,23 +63,57 @@ export default function DaftarProduk() {
     setEditData({});
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const updated = products.map((p) =>
-      p.id === editData.id ? editData : p
-    );
-    setProducts(updated);
-    handleCloseModal();
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+
+    if (!dataForm.id) {
+      setError("ID tidak ditemukan. Tidak bisa update.")
+      return
+    }
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await produkAPI.updateProduct(dataForm.id, {
+        nama: dataForm.nama,
+        detail: dataForm.detail,
+        stok: dataForm.stok,
+        harga: dataForm.harga,
+        gambar: dataForm.gambar,
+      })
+
+      setSuccess("Produk berhasil diperbarui!")
+
+      // Reset form
+      setIsModalOpen(false);
+      setDataForm({ nama: "", detail: "", stok: "", harga: "", gambar: "" })
+
+      setTimeout(() => setSuccess(""), 3000)
+
+      // Refresh data
+      loadProduct()
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
   };
 
-  // Fungsi Hapus produk
-  const handleDelete = (id) => {
-    const konfirmasi = confirm("Yakin ingin menghapus produk ini?");
-    if (!konfirmasi) return;
+  // Handle perubahan nilai input form
+  const handleChange = (evt) => {
+    const { name, value } = evt.target
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    })
+  }
 
-    const updatedProducts = products.filter((p) => p.id !== id);
-    setProducts(updatedProducts);
-  };
+  // Load data saat pertama di-render
+  useEffect(() => {
+    loadProduct()
+  }, [])
 
   return (
     <section id="topProduk" className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
@@ -81,13 +142,13 @@ export default function DaftarProduk() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <div key={product.kode_produk} className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100">
+          {currentProducts.map((product) => (
+            <div key={product.id} className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-100">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-3xl opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
               <div className="relative overflow-hidden">
                 <img
                   src={product.gambar}
-                  alt={product.nama_produk}
+                  alt={product.nama}
                   className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -96,12 +157,11 @@ export default function DaftarProduk() {
                 </div>
               </div>
               <div className="p-6 relative">
-
                 <Link
-                  to={`/detailAdmin/${product.kode_produk}`}
+                  to={`/detailAdmin/${product.id}`}
                   className="text-xl font-RethinkSans-SemiBold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors duration-300 inline-block"
                 >
-                  {product.nama_produk}
+                  {product.nama}
                 </Link>
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">{`Rp ${product.harga.toLocaleString()}/hari`}</p>
@@ -111,20 +171,20 @@ export default function DaftarProduk() {
                   </div>
                 </div>
                 <div className="flex item gap-4 mt-10 mb-4 justify-end">
-                <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
-                  <span className="flex items-center justify-center space-x-2">
-                    <span>Sewa Sekarang</span>
-                    <svg
-                      className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                  </span>
-                </button>
-                  <button onClick={() => setIsModalOpen(true)}
+                  <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
+                    <span className="flex items-center justify-center space-x-2">
+                      <span>Sewa Sekarang</span>
+                      <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                      </svg>
+                    </span>
+                  </button>
+                  <button onClick={() => handleEdit(product)}
                     className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
                     <div className="relative flex items-center gap-2">
                       <FaEdit className="text-xl" />
@@ -147,33 +207,43 @@ export default function DaftarProduk() {
             <form onSubmit={handleUpdate} className="space-y-4">
               <input
                 type="text"
-                value={editData.nama_produk}
-                onChange={(e) =>
-                  setEditData({ ...editData, nama_produk: e.target.value })
-                }
+                value={dataForm.nama}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Nama Produk"
                 required
               />
               <input
                 type="number"
-                value={editData.harga}
-                onChange={(e) =>
-                  setEditData({ ...editData, harga: parseInt(e.target.value) })
-                }
+                value={dataForm.harga}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Harga"
                 required
               />
               <input
                 type="number"
-                value={editData.stok}
-                onChange={(e) =>
-                  setEditData({ ...editData, stok: parseInt(e.target.value) })
-                }
+                value={dataForm.stok}
+                onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
                 placeholder="Stok"
                 required
+              />
+              <input
+                type="text"
+                name="detail"
+                value={dataForm.detail}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Detail Produk"
+              />
+              <input
+                type="text"
+                name="gambar"
+                value={dataForm.gambar}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="URL Gambar"
               />
               <div className="flex justify-end gap-2 pt-4">
                 <button
