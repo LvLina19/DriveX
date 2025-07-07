@@ -1,19 +1,33 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import articles from "../../data/articles.json";
+// import articles from "../../data/articles.json";
+import { artikelAPI } from "../../services/artikelAPI";
 
 export default function Artikel() {
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
+  const [artikels, setArtikels] = useState([]); // data produk dari JSON
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState("Semua");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
+  // Tambahkan ke dalam komponen di bagian atas sebelum return
+  const [dataForm, setDataForm] = useState({
+    judul: "", foto: "", kategori: "", detail: ""
+  })
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
   // Filter artikel berdasarkan kategori
   const filteredArticles = useMemo(() => {
     return selectedCategory === "Semua"
-      ? articles
-      : articles.filter((article) => article.kategori === selectedCategory);
-  }, [selectedCategory]);
+      ? artikels
+      : artikels.filter((article) => article.kategori === selectedCategory);
+  }, [selectedCategory, artikels]);
 
   // Pagination
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -29,6 +43,23 @@ export default function Artikel() {
 
   // Handler untuk mengubah halaman
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  const [editData, setEditData] = useState([]);
+
+  const loadArtikel = async () => {
+    try {
+      const data = await artikelAPI.fetchArtikels();
+      setArtikels(data);
+    } catch (err) {
+      setError("Gagal memuat produk");
+      console.error(err);
+    }
+  };
+
+  // Load data saat pertama di-render
+  useEffect(() => {
+    loadArtikel()
+  }, [])
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
@@ -78,7 +109,7 @@ export default function Artikel() {
               >
                 <div className="relative overflow-hidden">
                   <img
-                    src={article.gambar}
+                    src={article.foto}
                     alt={article.judul}
                     className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   />
@@ -91,8 +122,8 @@ export default function Artikel() {
                   <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
                     {article.judul}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">{article.isi_singkat}</p>
-                  <p className="text-gray-500 text-xs mb-4">{new Date(article.tanggal).toLocaleDateString("id-ID")}</p>
+                  <p className="text-gray-600 text-sm mb-4">{article.detail}</p>
+                  <p className="text-gray-500 text-xs mb-4">{new Date(article.created_at).toLocaleDateString("id-ID")}</p>
                   <button
                     className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                     aria-label={`Baca selengkapnya tentang ${article.judul}`}

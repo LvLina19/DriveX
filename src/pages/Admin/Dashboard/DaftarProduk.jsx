@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { CgAdd } from "react-icons/cg";
 import { useState,useEffect } from "react";
 import allProducts from "../../../data/products.json";
-import { produkAPI } from "../../../services/produkApi";
+import { produkAPI } from "../../../services/produkAPI";
 
 export default function DaftarProduk() {
   const [loading, setLoading] = useState(false)

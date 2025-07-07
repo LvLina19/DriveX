@@ -3,7 +3,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import React, { useState, useEffect } from "react";
 import { BiEdit } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
-import { produkAPI } from "../../../services/produkApi";
+import { produkAPI } from "../../../services/produkAPI";
 
 export default function admin() {
   const [loading, setLoading] = useState(false)

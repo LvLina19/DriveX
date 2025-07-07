@@ -3,7 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 import { BiRocket, BiPlay } from "react-icons/bi";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 // import products from "../../../data/products.json";
-import { produkAPI } from "../../../services/produkApi";
+import { produkAPI } from "../../../services/produkAPI";
 import testi from "../../../data/testi.json";
 import { useState,useEffect } from "react";
 

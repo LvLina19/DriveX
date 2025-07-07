@@ -1,20 +1,34 @@
-import { useState, useMemo } from "react";
+import { AiFillFileAdd, AiOutlineDelete } from "react-icons/ai";
+import { useState, useMemo, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import articles from "../../../data/articles.json";
-import { FaEdit } from "react-icons/fa";
+// import articles from "../../../data/articles.json";
+import { artikelAPI } from "../../../services/artikelAPI";
 
 export default function ArtikelAdmin() {
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
+  const [artikels, setArtikels] = useState([]); // data produk dari JSON
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+
   const [selectedCategory, setSelectedCategory] = useState("Semua");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
+  // Tambahkan ke dalam komponen di bagian atas sebelum return
+  const [dataForm, setDataForm] = useState({
+    judul: "", foto: "", kategori: "", detail: ""
+  })
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
   // Filter artikel berdasarkan kategori
   const filteredArticles = useMemo(() => {
     return selectedCategory === "Semua"
-      ? articles
-      : articles.filter((article) => article.kategori === selectedCategory);
-  }, [selectedCategory]);
+      ? artikels
+      : artikels.filter((article) => article.kategori === selectedCategory);
+  }, [selectedCategory, artikels]);
 
   // Pagination
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -31,6 +45,138 @@ export default function ArtikelAdmin() {
   // Handler untuk mengubah halaman
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const [editData, setEditData] = useState([]);
+
+  const loadArtikel = async () => {
+    try {
+      const data = await artikelAPI.fetchArtikels();
+      setArtikels(data);
+    } catch (err) {
+      setError("Gagal memuat produk");
+      console.error(err);
+    }
+  };
+
+  // Fungsi Edit produk (contoh: tampilkan data ke form/modal, disesuaikan kebutuhanmu)
+  const handleEdit = (artikel) => {
+    setDataForm({
+      id: artikel.id,
+      judul: artikel.judul,
+      foto: artikel.foto,
+      kategori: artikel.kategori,
+      detail: artikel.detail
+    })
+    setEditData(artikel);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setEditData({});
+  };
+
+  const handleAddProduct = async (e) => {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await artikelAPI.createArtikel(dataForm)
+
+      setSuccess("Artikel berhasil ditambahkan!")
+
+      // Kosongkan Form setelah Success
+      setDataForm({ judul: "", foto: "", kategori: "", detail: "" })
+
+      // Hilangkan pesan Success setelah 3 detik
+      setTimeout(() => setSuccess(""), 3000)
+
+      //Panggil Ulang loadNotes untuk refresh data
+      loadArtikel()
+
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`);
+    } finally {
+      setLoading(false)
+    }
+  };
+
+
+  const handleUpdate = async (e) => {
+    e.preventDefault()
+
+    if (!dataForm.id) {
+      setError("ID tidak ditemukan. Tidak bisa update.")
+      return
+    }
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await artikelAPI.updateArtikel(dataForm.id, {
+        judul: dataForm.judul,
+        foto: dataForm.foto,
+        kategori: dataForm.kategori,
+        detail: dataForm.detail
+      })
+
+      setSuccess("Artikel berhasil diperbarui!")
+
+      // Reset form
+      setIsModalOpen(false);
+      setDataForm({ judul: "", foto: "", kategori: "", detail: "" })
+
+      setTimeout(() => setSuccess(""), 3000)
+
+      // Refresh data
+      loadArtikel()
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  // Handle perubahan nilai input form
+  const handleChange = (evt) => {
+    const { name, value } = evt.target
+    setDataForm({
+      ...dataForm,
+      [name]: value,
+    })
+  }
+
+  // Fungsi Hapus produk
+  const handleDelete = async (id) => {
+    const konfirmasi = confirm("Yakin ingin menghapus catatan ini?")
+    if (!konfirmasi) return
+
+    try {
+      setLoading(true)
+      setError("")
+      setSuccess("")
+
+      await artikelAPI.deleteArtikel(id)
+
+      // Refresh data
+      loadArtikel()
+    } catch (err) {
+      setError(`Terjadi kesalahan: ${err.message}`)
+    } finally {
+      setLoading(false)
+    }
+  };
+
+
+  // Load data saat pertama di-render
+  useEffect(() => {
+    loadArtikel()
+  }, [])
+
   return (
     <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
       <br /><br />
@@ -40,10 +186,10 @@ export default function ArtikelAdmin() {
             <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">Berita & Tips</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-semibold text-gray-800 mb-6">
-            Artikel <span className="text-blue-500 ml-2">Terkini <button href="#"
+            Artikel <span className="text-blue-500 ml-2">Terkini <button onClick={() => setIsAddModalOpen(true)}
               className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-8 py-4 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
               <div className="relative flex items-center gap-2">
-                <FaEdit className="text-xl" />
+                <AiFillFileAdd className="text-xl" />
               </div>
             </button></span>
           </h2>
@@ -75,30 +221,34 @@ export default function ArtikelAdmin() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentArticles.map((article) => (
-              <Link
-                key={article.id}
-                to={`/artikelAdmin/${article.id}`}
-                className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100"
-                aria-label={`Baca artikel: ${article.judul}`}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={article.gambar}
-                    alt={article.judul}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="p-6">
-                  <span className="inline-block mb-2 px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
-                    {article.kategori}
-                  </span>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
-                    {article.judul}
-                  </h3>
-                  <p className="text-gray-600 text-sm mb-4">{article.isi_singkat}</p>
-                  <p className="text-gray-500 text-xs mb-4">{new Date(article.tanggal).toLocaleDateString("id-ID")}</p>
+            {currentArticles.map((article, index) => (
+              <div key={article.id} className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100">
+                <Link
+
+                  to={`/artikelAdmin/${article.id}`}
+                  className="block"
+                  aria-label={`Baca artikel: ${article.judul}`}
+                >
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={article.foto}
+                      alt={article.judul}
+                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div className="p-6">
+                    <span className="inline-block mb-2 px-3 py-1 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">
+                      {article.kategori}
+                    </span>
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                      {article.judul}
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 text-sm mb-4 px-5">{article.detail}</p>
+                  <p className="text-gray-500 text-xs mb-4 px-5">{new Date(article.created_at).toLocaleDateString("id-ID")}</p>
+                </Link>
+                <div className="flex flex-auto gap-4">
                   <button
                     className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                     aria-label={`Baca selengkapnya tentang ${article.judul}`}
@@ -106,8 +256,20 @@ export default function ArtikelAdmin() {
                     <span>Baca Selengkapnya</span>
                     <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
                   </button>
+                  <button onClick={() => handleEdit(article)}
+                    className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-4 py-4 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
+                    <div className="relative flex items-center gap-2">
+                      <AiFillFileAdd className="text-xl" />
+                    </div>
+                  </button>
+                  <button onClick={() => handleDelete(article.id)}
+                    className="bg-transparent border-2 border-blue-500 text-blue-500 text-sm font-RethinkSans-SemiBold px-4 py-4 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-indigo-500 hover:text-white transition duration-300">
+                    <div className="relative flex items-center gap-2">
+                      <AiOutlineDelete className="text-xl" />
+                    </div>
+                  </button>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         )}
@@ -120,8 +282,8 @@ export default function ArtikelAdmin() {
                 key={page}
                 onClick={() => paginate(page)}
                 className={`px-4 py-2 rounded-full transition-all duration-300 ${currentPage === page
-                    ? "bg-blue-500 text-white"
-                    : "bg-white border border-blue-100 hover:bg-blue-100"
+                  ? "bg-blue-500 text-white"
+                  : "bg-white border border-blue-100 hover:bg-blue-100"
                   }`}
                 aria-label={`Pindah ke halaman ${page}`}
               >
@@ -131,6 +293,147 @@ export default function ArtikelAdmin() {
           </div>
         )}
       </div>
-    </section>
+      {/* Modal untuk Tambah Produk (di dalam return, di bawah modal edit) */}
+      {isAddModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+          <div className="bg-white w-full max-w-md p-6 rounded-xl shadow-xl relative">
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">
+              Tambah Produk
+            </h3>
+            <form onSubmit={handleAddProduct} className="space-y-4">
+              <input
+                type="text"
+                name="judul"
+                value={dataForm.judul}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Judul Artikel"
+                required
+              />
+              <input
+                type="text"
+                name="foto"
+                value={dataForm.foto}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Foto Url Artikel"
+                required
+              />
+              <select
+                type="text"
+                name="kategori"
+                value={dataForm.kategori}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Kategori Artikel"
+                required
+              >
+                <option value="">-- Pilih Kategori --</option>
+                <option value="Tips Perjalanan">Tips Perjalanan</option>
+                <option value="Promo">Promo</option>
+                <option value="Berita">Berita</option>
+              </select>
+              <input
+                type="text"
+                name="detail"
+                value={dataForm.detail}
+                onChange={handleChange}
+                className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                placeholder="Detail Artikel"
+                required
+              />
+              <div className="flex justify-end gap-2 pt-4">
+                <button
+                  type="button"
+                  onClick={() => setIsAddModalOpen(false)}
+                  className="border-2 border-blue-500 text-blue-700 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:bg-blue-400 hover:text-white transition duration-300"
+                >
+                  Batal
+                </button>
+                <button
+                  type="submit"
+                  className="border-2 border-blue-400 text-white from-blue-400 to-purple-400  text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition duration-300"
+                >
+                  Tambah
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )
+      }
+
+      {/* Modal Edit */}
+      {
+        isModalOpen && (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-50">
+            <div className="bg-white w-full max-w-md p-6 rounded-xl shadow-xl relative">
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">
+                Edit Produk
+              </h3>
+              <form onSubmit={handleUpdate} className="space-y-4">
+                <input
+                  type="text"
+                  name="judul"
+                  value={dataForm.judul}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                  placeholder="Judul Artikel"
+                  required
+                />
+                <input
+                  type="text"
+                  name="foto"
+                  value={dataForm.foto}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                  placeholder="Foto Url Artikel"
+                  required
+                />
+                <select
+                  type="text"
+                  name="kategori"
+                  value={dataForm.kategori}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                  placeholder="Kategori Artikel"
+                  required
+                >
+                  <option value="">-- Pilih Kategori --</option>
+                  <option value="Tips Perjalanan">Tips Perjalanan</option>
+                  <option value="Promo">Promo</option>
+                  <option value="Berita">Berita</option>
+                </select>
+                <input
+                  type="text"
+                  name="detail"
+                  value={dataForm.detail}
+                  onChange={handleChange}
+                  className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
+                  placeholder="Detail Artikel"
+                  required
+                />
+                <div className="flex justify-end gap-2 pt-4">
+                  <button
+                    type="button"
+                    onClick={handleCloseModal}
+                    className="border-2 border-blue-500 text-blue-700 text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:bg-blue-400 hover:text-white transition duration-300"
+                  >
+                    Batal
+                  </button>
+                  <button
+                    type="submit"
+                    className="border-2 border-blue-400 text-white from-blue-400 to-purple-400  text-sm font-RethinkSans-SemiBold px-8 py-3 rounded-2xl inset-0 bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 transition duration-300"
+                  >
+                    Update
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )
+      }
+
+    </section >
   );
 }
