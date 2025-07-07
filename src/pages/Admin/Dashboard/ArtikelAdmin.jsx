@@ -224,7 +224,6 @@ export default function ArtikelAdmin() {
             {currentArticles.map((article, index) => (
               <div key={article.id} className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100">
                 <Link
-
                   to={`/artikelAdmin/${article.id}`}
                   className="block"
                   aria-label={`Baca artikel: ${article.judul}`}

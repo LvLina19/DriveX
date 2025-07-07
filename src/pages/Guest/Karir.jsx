@@ -1,8 +1,63 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import careers from "../../data/careers.json";
+// import careers from "../../data/careers.json";
+import { karirAPI } from "../../services/karirAPI";
+import { useState, useEffect, useMemo } from "react";
 
 export default function Karir() {
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState("")
+  const [karirs, setKarirs] = useState([]); // data produk dari JSON
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+
+  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
+
+  // Tambahkan ke dalam komponen di bagian atas sebelum return
+  const [dataForm, setDataForm] = useState({
+    judul: "", gambar: "", lokasi: "", tanggal_tutup: "", deskripsi: ""
+  })
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  // Filter artikel berdasarkan kategori
+  const filteredArticles = useMemo(() => {
+    return selectedCategory === "Semua"
+      ? karirs
+      : karirs.filter((article) => article.kategori === selectedCategory);
+  }, [selectedCategory, karirs]);
+
+  // Pagination
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentArticles = filteredArticles.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+
+  // Handler untuk mengubah kategori
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+    setCurrentPage(1); // Reset ke halaman 1 saat kategori berubah
+  };
+
+  // Handler untuk mengubah halaman
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  
+  const loadKarirs = async () => {
+    try {
+      const data = await karirAPI.fetchKarirs();
+      setKarirs(data);
+    } catch (err) {
+      setError("Gagal memuat produk");
+      console.error(err);
+    }
+  };
+  
+  // Load data saat pertama di-render
+  useEffect(() => {
+    loadKarirs()
+  }, [])
   return (
     <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
       <br /><br />
@@ -20,7 +75,7 @@ export default function Karir() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {careers.map((career) => (
+          {karirs.map((career) => (
             <Link
               key={career.id}
               to={`/karir/${career.id}`} // Rute untuk detail lowongan (opsional)
