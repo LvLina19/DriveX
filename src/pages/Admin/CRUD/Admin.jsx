@@ -131,12 +131,6 @@ export default function admin() {
     } finally {
       setLoading(false)
     }
-    // e.preventDefault();
-    // const updated = products.map((p) =>
-    //   p.id === editData.id ? editData : p
-    // );
-    // setProducts(updated);
-    // handleCloseModal();
   };
 
   // Fungsi Hapus produk
@@ -375,6 +369,7 @@ export default function admin() {
             <form onSubmit={handleUpdate} className="space-y-4">
               <input
                 type="text"
+                name="nama"
                 value={dataForm.nama}
                 onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
@@ -383,6 +378,7 @@ export default function admin() {
               />
               <input
                 type="number"
+                name="harga"
                 value={dataForm.harga}
                 onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
@@ -391,6 +387,7 @@ export default function admin() {
               />
               <input
                 type="number"
+                name="stok"
                 value={dataForm.stok}
                 onChange={handleChange}
                 className="w-full p-3 bg-gray-100 rounded-xl border border-gray-200"
