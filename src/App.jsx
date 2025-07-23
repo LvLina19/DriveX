@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import './assets/tailwind.css';
 import { Route, Routes } from "react-router-dom";
-import HeaderAdmin from "./components/Admin/HeaderAdmin";
 import DashboardLayout from "./layouts/DashboardLayout";
 const DetailProdukAdmin = React.lazy(() => import("./pages/Admin/Dashboard/DetailProduk"))
 const ArtikelAdmin = React.lazy(() => import("./pages/Admin/Dashboard/ArtikelAdmin"))
@@ -26,6 +25,18 @@ const Karir = React.lazy(() => import("./pages/Guest/Karir"));
 const Pemesanan = React.lazy(() => import("./pages/Guest/Pemesanan"));
 const SimulasiGuest = React.lazy(() => import("./pages/Guest/SimulasiGuest"));
 const GaleriMedia = React.lazy(() => import("./pages/Guest/GaleriMedia"));
+const User = React.lazy(() => import("./pages/Admin/CRUD/User"));
+const HomeGuestAfter = React.lazy(() => import("./pages/GuestAfterLogin/HomeGuest"));
+const GuestAfterLogin = React.lazy(() => import("./layouts/GuestAfterLogin"));
+
+// guest after
+const DetailProdukAfter = React.lazy(() => import("./pages/GuestAfterLogin/DetailProduk"));
+const ArtikelAfter = React.lazy(() => import("./pages/GuestAfterLogin/Artikel"));
+const DetailArtikelAfter  = React.lazy(() => import("./pages/GuestAfterLogin/DetailProduk"));
+const KarirAfter = React.lazy(() => import("./pages/GuestAfterLogin/Karir"));
+const PemesananAfter = React.lazy(() => import("./pages/GuestAfterLogin/Pemesanan"));
+const SimulasiGuestAfter = React.lazy(() => import("./pages/GuestAfterLogin/SimulasiGuest"));
+const GaleriMediaAfter = React.lazy(() => import("./pages/GuestAfterLogin/GaleriMedia"));
 
 function App() {
   return (
@@ -37,9 +48,19 @@ function App() {
           <Route path="/artikel" element={<Artikel />} />
           <Route path="/artikel/:id" element={<DetailArtikel />} />
           <Route path="/karir" element={<Karir />} />
-          <Route path="/pemesanan" element={<Pemesanan />} />
           <Route path="/simulasi" element={<SimulasiGuest />} />
           <Route path="/galeri" element={<GaleriMedia />} />
+        </Route>
+        
+        <Route element={<GuestAfterLogin />}>
+          <Route path="/guest" element={<HomeGuestAfter />} />
+          <Route path="/detailGuest/:kode_produk" element={<DetailProdukAfter />} /> 
+          <Route path="/artikelGuest" element={<ArtikelAfter />} />
+          <Route path="/artikelGuest/:id" element={<DetailArtikelAfter />} />
+          <Route path="/karirGuest" element={<KarirAfter />} />
+          <Route path="/pemesananGuest" element={<PemesananAfter />} />
+          <Route path="/simulasiGuest" element={<SimulasiGuestAfter />} />
+          <Route path="/galeriGuest" element={<GaleriMediaAfter />} />
         </Route>
 
         <Route element={<AuthLayout />}>
@@ -50,6 +71,7 @@ function App() {
 
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
+          <Route path="/user" element={<User />} />
         </Route>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<HomeAdmin />} />
@@ -60,8 +82,6 @@ function App() {
           <Route path="/karirAdmin" element={<KarirAdmin/>} />
           <Route path="/pemesananAdmin" element={<PemesananAdmin />} />
         </Route>
-
-        
       </Routes>
     </Suspense>
   );

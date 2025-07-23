@@ -1,17 +1,18 @@
-import { ImSpinner2 } from "react-icons/im"; 
-import { BsFillExclamationDiamondFill } from "react-icons/bs"; 
+import { ImSpinner2 } from "react-icons/im";
+import { BsFillExclamationDiamondFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsFillPersonPlusFill } from "react-icons/bs";
+import { loginAPI } from "../../services/loginApi";
 
 export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [dataForm, setDataForm] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
@@ -28,33 +29,34 @@ export default function Login() {
     e.preventDefault();
 
     setLoading(true);
-    setError(false);
+    setError("");
 
-    axios
-      .post("https://dummyjson.com/user/login", {
-        username: dataForm.email,
-        password: dataForm.password,
-      })
-      .then((response) => {
-        // Jika status bukan 200, tampilkan pesan error
-        if (response.status !== 200) {
-          setError(response.data.message);
-          return;
-        }
+    try {
+      const user = await loginAPI.findUserByEmailAndPassword(
+        dataForm.username,
+        dataForm.password
+      );
 
-        // Redirect ke dashboard jika login sukses
-        navigate("/admin");
-      })
-      .catch((err) => {
-        if (err.response) {
-          setError(err.response.data.message || "An error occurred");
+      if (!user) {
+        setError("Username atau password salah");
+        return;
+      } else {
+        // 🔄 Redirect berdasarkan role
+        if (user.role === "Admin") {
+          navigate("/admin");
+        } else if (user.role === "Guest") {
+          navigate("/guest");
         } else {
-          setError(err.message || "An unknown error occurred");
+          // Optional: fallback jika role tidak diketahui
+          navigate("/");
         }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Gagal login. Silakan coba lagi.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   /* error & loading status */
@@ -84,15 +86,15 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div className="mb-5">
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Email Address
+            Username
           </label>
           <input
             type="text"
-            id="email"
+            id="username"
             className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
                             placeholder-gray-400"
-            placeholder="you@example.com"
-            name="email"
+            placeholder="Username"
+            name="username"
             onChange={handleChange}
           />
         </div>

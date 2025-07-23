@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function HeaderAdmin() {
 
@@ -14,16 +14,35 @@ export default function HeaderAdmin() {
         </a>
 
         <nav className="flex space-x-9 pl-50">
-          <a
-            href="/admin"
-            className=" text-gray-800 hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide">
+          <NavLink
+            to="/admin"
+            className={({ isActive }) =>
+              `text-base tracking-wide font-RethinkSans-SemiBold ${isActive ? "text-blue-500 font-bold border-b-2 border-blue-500" : "text-gray-800 hover:text-blue-500"
+              }`
+            }
+          >
             Data
-          </a>
-          <a
-            href="/dashboard"
-            className=" text-gray-800 hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide">
+          </NavLink>
+
+          <NavLink
+            to="/user"
+            className={({ isActive }) =>
+              `text-base tracking-wide font-RethinkSans-SemiBold ${isActive ? "text-blue-500 font-bold border-b-2 border-blue-500" : "text-gray-800 hover:text-blue-500"
+              }`
+            }
+          >
+            User
+          </NavLink>
+
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              `text-base tracking-wide font-RethinkSans-SemiBold ${isActive ? "text-blue-500 font-bold border-b-2 border-blue-500" : "text-gray-800 hover:text-blue-500"
+              }`
+            }
+          >
             Dashboard
-          </a>
+          </NavLink>
         </nav>
 
         <div className="flex items-center space-x-5 ml-10">
