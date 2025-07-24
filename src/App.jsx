@@ -33,7 +33,7 @@ const GuestAfterLogin = React.lazy(() => import("./layouts/GuestAfterLogin"));
 // guest after
 const DetailProdukAfter = React.lazy(() => import("./pages/GuestAfterLogin/DetailProduk"));
 const ArtikelAfter = React.lazy(() => import("./pages/GuestAfterLogin/Artikel"));
-const DetailArtikelAfter  = React.lazy(() => import("./pages/GuestAfterLogin/DetailProduk"));
+const DetailArtikelAfter  = React.lazy(() => import("./pages/GuestAfterLogin/DetailArtikel"));
 const KarirAfter = React.lazy(() => import("./pages/GuestAfterLogin/Karir"));
 const PemesananAfter = React.lazy(() => import("./pages/GuestAfterLogin/Pemesanan"));
 const SimulasiGuestAfter = React.lazy(() => import("./pages/GuestAfterLogin/SimulasiGuest"));
