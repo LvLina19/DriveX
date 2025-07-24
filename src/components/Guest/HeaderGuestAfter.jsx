@@ -77,7 +77,7 @@ export default function HeaderGuestAfter() {
             Lowongan
           </a>
           <a
-            href="/guest/simulasi"
+            href="/simulasiGuest"
             className={`${
               activeSection === "/simulasi" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -85,7 +85,7 @@ export default function HeaderGuestAfter() {
             Simulasi
           </a>
           <a
-            href="/guest/galeri"
+            href="/galeriGuest"
             className={`${
               activeSection === "/galeri" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
