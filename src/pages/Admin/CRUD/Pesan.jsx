@@ -1,18 +1,17 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { BiRocket } from "react-icons/bi";
-import { FiArrowRight } from "react-icons/fi";
-import { pemesananAPI } from "../../services/pemesananAPI";
-import { produkAPI } from "../../services/produkAPI";
+import { CgAdd } from "react-icons/cg";
 import { AiOutlineDelete } from "react-icons/ai";
+import React, { useState, useEffect } from "react";
+import { BiEdit } from "react-icons/bi";
+import { Link, NavLink } from "react-router-dom";
+import { produkAPI } from "../../../services/produkAPI";
+import { pemesananAPI } from "../../../services/pemesananAPI";
 
-export default function Pemesanan() {
+export default function pesan() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState("")
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
   const [editData, setEditData] = useState({});
-  const navigate = useNavigate();
   const currentDate = new Date().toISOString().split("T")[0];
   // Tambahkan ke dalam komponen di bagian atas sebelum return
   const [dataForm, setDataForm] = useState({
@@ -40,7 +39,6 @@ export default function Pemesanan() {
       setSuccess("")
 
       await pemesananAPI.createPemesanan(dataForm)
-      navigate("/guest");
 
       setSuccess("Catatan berhasil ditambahkan!")
 
@@ -149,16 +147,7 @@ export default function Pemesanan() {
 
   // Load data saat pertama di-render
   useEffect(() => {
-    const fetchProduk = async () => {
-      try {
-        const data = await produkAPI.fetchProducts();
-        setProducts(data);
-      } catch (err) {
-        console.error("Gagal ambil produk:", err.message);
-      }
-    };
-    fetchProduk();
-    loadProduct();
+    loadProduct()
   }, [])
 
   // Memanggil fetchNotes beserta error/loading handling
@@ -181,20 +170,15 @@ export default function Pemesanan() {
   const currentPemesanans = filteredPemesanans.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredPemesanans.length / itemsPerPage);
 
-  return (
-    <section className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
-      <br /><br />
 
-      <div className="container mx-auto px-6 relative z-10 max-w-screen-xl">
-        <div className="text-center mb-16">
-          <div className="inline-block mb-4">
-            <span className="px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-medium">Pemesanan</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-RethinkSans-SemiBold text-gray-800 mb-6">Pesan <span className="text-blue-500 ml-2">Sekarang</span></h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-indigo-400 mx-auto mb-8 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Isi formulir di bawah ini untuk memesan kendaraan favorit Anda dengan mudah dan cepat.
-          </p>
+  return (
+    <div className="guest-page">
+      <section id="" className="relative py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-200 to-indigo-200 rounded-full opacity-30 animate-bounce"></div>
+          <div className="absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-200 to-blue-200 rounded-full opacity-40 animate-pulse"></div>
+          <div className="absolute bottom-32 left-32 w-28 h-28 bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full opacity-25 animate-bounce delay-1000"></div>
+          <div className="absolute bottom-20 right-20 w-36 h-36 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-full opacity-20 animate-pulse delay-500"></div>
         </div>
 
         <div className="overflow-x-auto max-w-6xl mx-auto px-6">
@@ -217,6 +201,7 @@ export default function Pemesanan() {
                 <th className="px-4 py-3">Tanggal</th>
                 <th className="px-4 py-3">Durasi</th>
                 <th className="px-4 py-3">Jenis Kendaraan</th>
+                <th className="px-4 py-3"></th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-100 text-sm text-gray-800">
@@ -237,7 +222,15 @@ export default function Pemesanan() {
                   <td className="px-6 py-4">{pemesanans.tanggal}</td>
                   <td className="px-6 py-4">{pemesanans.durasi}</td>
                   <td className="px-6 py-4">{pemesanans.nama_produk}</td>
-                  
+                  <td className="px-6 py-4">
+                    <div className="truncate text-gray-600 flex items-center gap-x-2">
+                      <button
+                        onClick={() => handleDelete(pemesanans.id)}
+                      >
+                        <AiOutlineDelete className="text-purple-400 text-2xl hover:text-purple-700 transition-colors" />
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -272,83 +265,8 @@ export default function Pemesanan() {
               Next
             </button>
           </div>
-        </div><br />
-
-        <div className="max-w-lg mx-auto bg-white rounded-3xl shadow-lg p-8 border border-blue-100">
-          <form onSubmit={handleAddProduct} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
-              <input
-                type="text"
-                name="username"
-                value={dataForm.nama}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={dataForm.email}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Tanggal Pemesanan</label>
-              <input
-                type="date"
-                name="tanggal"
-                value={dataForm.tanggal}
-                onChange={handleChange}
-                min={currentDate}
-                className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Durasi (Hari)</label>
-              <input
-                type="number"
-                name="durasi"
-                value={dataForm.durasi}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Jenis Mobil</label>
-              <select
-                name="nama_produk"
-                value={dataForm.nama_produk}
-                onChange={handleChange}
-                className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
-              >
-                <option value="">Pilih Mobil</option>
-                {products.map((product) => (
-                  <option key={product.nama} value={product.nama}>
-                    {product.nama} (Rp {product.harga.toLocaleString()}/hari)
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
-            >
-              <BiRocket className="text-xl" />
-              <span>Pesan Sekarang</span>
-              <FiArrowRight className="text-lg transform hover:translate-x-1 transition-transform duration-300" />
-            </button>
-          </form>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

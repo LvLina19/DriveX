@@ -8,6 +8,7 @@ const DetailArtikelAdmin = React.lazy(() => import("./pages/Admin/Dashboard/Deta
 const KarirAdmin = React.lazy(() => import("./pages/Admin/Dashboard/KarirAdmin"))
 const PemesananAdmin = React.lazy(() => import("./pages/Admin/Dashboard/PemesananAdmin"))
 const Admin = React.lazy(() => import("./pages/Admin/CRUD/Admin"))
+const Pesan = React.lazy(() => import("./pages/Admin/CRUD/Pesan"))
 const HomeAdmin = React.lazy(() => import("./pages/Admin/Dashboard/HomeAdmin"))
 const Guest = React.lazy(() => import("./pages/Guest/HomeGuest"))
 const Loading = React.lazy(() => import("./components/Guest/Loading"));
@@ -61,6 +62,7 @@ function App() {
           <Route path="/pemesananGuest" element={<PemesananAfter />} />
           <Route path="/simulasiGuest" element={<SimulasiGuestAfter />} />
           <Route path="/galeriGuest" element={<GaleriMediaAfter />} />
+          <Route path="/pemesanan" element={<PemesananAfter />} />
         </Route>
 
         <Route element={<AuthLayout />}>
@@ -72,6 +74,7 @@ function App() {
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={<Admin />} />
           <Route path="/user" element={<User />} />
+          <Route path="/pesan" element={<Pesan />} />
         </Route>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<HomeAdmin />} />

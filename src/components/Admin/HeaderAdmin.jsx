@@ -33,6 +33,16 @@ export default function HeaderAdmin() {
           >
             User
           </NavLink>
+          
+          <NavLink
+            to="/pesan"
+            className={({ isActive }) =>
+              `text-base tracking-wide font-RethinkSans-SemiBold ${isActive ? "text-blue-500 font-bold border-b-2 border-blue-500" : "text-gray-800 hover:text-blue-500"
+              }`
+            }
+          >
+            Pemesanan
+          </NavLink>
 
           <NavLink
             to="/dashboard"

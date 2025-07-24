@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { produkAPI } from "../../services/produkAPI";
 
 export default function DaftarProdukAfter() {
@@ -97,7 +97,9 @@ export default function DaftarProdukAfter() {
                   </div>
                 </div>
                 <div className="flex item gap-4 mt-10 mb-4 justify-end">
-                  <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
+                  <Link
+                    to={`/pemesanan`}
+                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-3 px-6 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl">
                     <span className="flex items-center justify-center space-x-2">
                       <span>Sewa Sekarang</span>
                       <svg
@@ -109,7 +111,7 @@ export default function DaftarProdukAfter() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                       </svg>
                     </span>
-                  </button>
+                  </Link>
                 </div>
                 <div className="w-0 group-hover:w-full h-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 mt-4 transition-all duration-500 rounded-full"></div>
               </div>

@@ -61,7 +61,7 @@ export default function HeaderGuestAfter() {
             Testimoni
           </a>
           <a
-            href="/guest/Artikel"
+            href="/artikelGuest"
             className={`${
               activeSection === "/Artikel" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
@@ -69,7 +69,7 @@ export default function HeaderGuestAfter() {
             Artikel
           </a>
            <a
-            href="/guest/Karir"
+            href="/karirGuest"
             className={`${
               activeSection === "/Karir" ? "text-blue-500" : "text-gray-800"
             } hover:text-blue-500 font-RethinkSans-SemiBold text-base tracking-wide`}
