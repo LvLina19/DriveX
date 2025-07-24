@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from "react";
 export default function Karir() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState("")
-  const [karirs, setKarirs] = useState([]); // data produk dari JSON
+  const [karirs, setKarirs] = useState([]);
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
 
@@ -15,33 +15,33 @@ export default function Karir() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 3;
 
-  // Tambahkan ke dalam komponen di bagian atas sebelum return
+
   const [dataForm, setDataForm] = useState({
     judul: "", gambar: "", lokasi: "", tanggal_tutup: "", deskripsi: ""
   })
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
-  // Filter artikel berdasarkan kategori
+
   const filteredArticles = useMemo(() => {
     return selectedCategory === "Semua"
       ? karirs
       : karirs.filter((article) => article.kategori === selectedCategory);
   }, [selectedCategory, karirs]);
 
-  // Pagination
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentArticles = filteredArticles.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
 
-  // Handler untuk mengubah kategori
+
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
-    setCurrentPage(1); // Reset ke halaman 1 saat kategori berubah
+    setCurrentPage(1); 
   };
 
-  // Handler untuk mengubah halaman
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
   
   const loadKarirs = async () => {
@@ -54,7 +54,7 @@ export default function Karir() {
     }
   };
   
-  // Load data saat pertama di-render
+
   useEffect(() => {
     loadKarirs()
   }, [])
@@ -78,7 +78,7 @@ export default function Karir() {
           {karirs.map((career) => (
             <Link
               key={career.id}
-              to={`/karirGuest/${career.id}`} // Rute untuk detail lowongan (opsional)
+              to={`/karirGuest/${career.id}`} 
               className="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-blue-100"
             >
               <div className="relative overflow-hidden">
@@ -98,10 +98,7 @@ export default function Karir() {
                   Ditutup: {new Date(career.tanggal_tutup).toLocaleDateString("id-ID")}
                 </p>
                 <p className="text-gray-600 text-sm mb-4">{career.deskripsi_singkat}</p>
-                <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-2 px-4 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
-                  <span>Lamar Sekarang</span>
-                  <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+               
               </div>
             </Link>
           ))}

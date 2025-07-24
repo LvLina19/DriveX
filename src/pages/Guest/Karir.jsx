@@ -98,10 +98,7 @@ export default function Karir() {
                   Ditutup: {new Date(career.tanggal_tutup).toLocaleDateString("id-ID")}
                 </p>
                 <p className="text-gray-600 text-sm mb-4">{career.deskripsi_singkat}</p>
-                <button className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-RethinkSans-SemiBold py-2 px-4 rounded-2xl transition-all duration-300 transform group-hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2">
-                  <span>Lamar Sekarang</span>
-                  <FiArrowRight className="text-lg transform group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+                
               </div>
             </Link>
           ))}

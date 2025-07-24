@@ -1,5 +1,5 @@
-import { loginAPI } from "../../services/loginApi"
-import { data, useNavigate } from "react-router-dom";
+import { loginAPI } from "../../services/loginApi";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Register() {
@@ -15,12 +15,12 @@ export default function Register() {
     });
 
     const handleAddUser = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         try {
-            setLoading(true)
-            setError("")
-            setSuccess("")
+            setLoading(true);
+            setError("");
+            setSuccess("");
 
             // VALIDASI PASSWORD & CONFIRM
             if (dataForm.password !== dataForm.confirmPassword) {
@@ -30,54 +30,66 @@ export default function Register() {
 
             // Jangan kirim confirmPassword ke API
             const { email, username, password } = dataForm;
-            await loginAPI.createLogin({ email, username, password, role:"Guest" });
+            await loginAPI.createLogin({ email, username, password, role: "Guest" });
 
             navigate("/login");
 
-            setSuccess("Catatan berhasil ditambahkan!")
+            setSuccess("Catatan berhasil ditambahkan!");
 
             // Kosongkan Form setelah Success
-            setDataForm({ email: "", username: "", password: "", confirmPassword:"" })
+            setDataForm({ email: "", username: "", password: "", confirmPassword: "" });
 
             // Hilangkan pesan Success setelah 3 detik
-            setTimeout(() => setSuccess(""), 3000)
+            setTimeout(() => setSuccess(""), 3000);
 
             //Panggil Ulang loadNotes untuk refresh data
-            loadLogin()
+            loadLogin();
 
         } catch (err) {
             setError(`Terjadi kesalahan: ${err.message}`);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     };
 
     // Memanggil fetchNotes beserta error/loading handling
     const loadLogin = async () => {
         try {
-            setLoading(true)
-            setError("")
-            const data = await loginAPI.fetchLogins()
-            setLogins(data)
+            setLoading(true);
+            setError("");
+            const data = await loginAPI.fetchLogins();
+            setLogins(data);
         } catch (err) {
-            setError("Gagal memuat catatan")
-            console.error(err)
+            setError("Gagal memuat catatan");
+            console.error(err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }
+    };
 
-    const [logins, setLogins] = useState([])
+    const [logins, setLogins] = useState([]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setDataForm((prev) => ({ ...prev, [name]: value }));
-    }
+    };
+
     return (
-        <div>
+        <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
             <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">
                 Create Your Account ✨
             </h2>
+
+            {error && (
+                <div className="bg-red-500 text-white p-4 mb-4 rounded-md">
+                    {error}
+                </div>
+            )}
+            {success && (
+                <div className="bg-green-500 text-white p-4 mb-4 rounded-md">
+                    {success}
+                </div>
+            )}
 
             <form onSubmit={handleAddUser}>
                 <div className="mb-5">
@@ -93,8 +105,7 @@ export default function Register() {
                         value={dataForm.email}
                         id="email"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="you@example.com"
                     />
                 </div>
@@ -112,8 +123,7 @@ export default function Register() {
                         value={dataForm.username}
                         id="username"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="Username.."
                     />
                 </div>
@@ -131,8 +141,7 @@ export default function Register() {
                         value={dataForm.password}
                         id="password"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="********"
                     />
                 </div>
@@ -150,20 +159,18 @@ export default function Register() {
                         value={dataForm.confirmPassword}
                         id="confirmPassword"
                         onChange={handleChange}
-                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm
-                            placeholder-gray-400"
+                        className="w-full px-4 py-2 bg-gray-50 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         placeholder="********"
                     />
                 </div>
 
                 <button
                     type="submit"
-                    className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4
-                        rounded-lg transition duration-300"
+                    className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
                     Register
                 </button>
             </form>
         </div>
-    )
+    );
 }

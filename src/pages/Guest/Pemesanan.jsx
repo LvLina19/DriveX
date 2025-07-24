@@ -13,13 +13,15 @@ export default function Pemesanan() {
     jenis_mobil: "",
   });
   const [errors, setErrors] = useState({});
-  const currentDate = new Date().toISOString().split("T")[0]; // 2025-06-29
+  const [totalHarga, setTotalHarga] = useState(0);
+  const currentDate = new Date().toISOString().split("T")[0]; // 2025-07-24
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     // Reset error untuk field yang diubah
     setErrors({ ...errors, [name]: "" });
+    calculateTotal();
   };
 
   const validateForm = () => {
@@ -46,12 +48,24 @@ export default function Pemesanan() {
     return Object.keys(tempErrors).length === 0;
   };
 
+  const calculateTotal = () => {
+    let harga = 0;
+    const selectedProduct = products.products.find(
+      (p) => p.nama_produk === formData.jenis_mobil
+    );
+    if (selectedProduct && formData.durasi) {
+      harga = selectedProduct.harga * parseInt(formData.durasi);
+    }
+    setTotalHarga(harga);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Pemesanan berhasil! Detail: " + JSON.stringify(formData));
+      alert("Pemesanan berhasil! Detail: " + JSON.stringify(formData) + ", Total Harga: Rp " + totalHarga.toLocaleString());
       // Di sini Anda bisa mengganti alert dengan pengiriman data ke API
       setFormData({ nama: "", email: "", tanggal: "", durasi: "", jenis_mobil: "" });
+      setTotalHarga(0);
     }
   };
 
@@ -138,6 +152,13 @@ export default function Pemesanan() {
                 ))}
               </select>
               {errors.jenis_mobil && <p className="text-red-500 text-sm mt-1">{errors.jenis_mobil}</p>}
+            </div>
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Total Harga</label>
+              <p className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+                Rp {totalHarga.toLocaleString()}
+              </p>
             </div>
 
             <button
