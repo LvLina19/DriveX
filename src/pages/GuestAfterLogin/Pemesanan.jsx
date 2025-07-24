@@ -16,7 +16,7 @@ export default function Pemesanan() {
   const currentDate = new Date().toISOString().split("T")[0];
   // Tambahkan ke dalam komponen di bagian atas sebelum return
   const [dataForm, setDataForm] = useState({
-    nama_produk: "", username: "", tanggal: "", durasi: "", email: ""
+    nama_produk: "", username: "", tanggal: "", durasi: "", email: "", harga_produk: ""
   })
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -39,13 +39,26 @@ export default function Pemesanan() {
       setError("")
       setSuccess("")
 
-      await pemesananAPI.createPemesanan(dataForm)
+      const hargaProduk = parseInt(dataForm.harga_produk) || 0;
+      const durasi = parseInt(dataForm.durasi) || 0;
+      const totalHarga = hargaProduk * durasi;
+      // Data yang dikirim ke backend
+      const newData = {
+        nama_produk: dataForm.nama_produk,
+        username: dataForm.username,
+        tanggal: dataForm.tanggal,
+        durasi: dataForm.durasi,
+        email: dataForm.email,
+        harga_produk: totalHarga, // ini harga total sesuai durasi
+      };
+
+      await pemesananAPI.createPemesanan(newData)
       navigate("/guest");
 
       setSuccess("Catatan berhasil ditambahkan!")
 
       // Kosongkan Form setelah Success
-      setDataForm({ nama_produk: "", username: "", tanggal: "", durasi: "", email: "" })
+      setDataForm({ nama_produk: "", username: "", tanggal: "", durasi: "", email: "", harga_produk: "" })
 
       // Hilangkan pesan Success setelah 3 detik
       setTimeout(() => setSuccess(""), 3000)
@@ -63,10 +76,36 @@ export default function Pemesanan() {
   // Handle perubahan nilai input form
   const handleChange = (evt) => {
     const { name, value } = evt.target
-    setDataForm({
-      ...dataForm,
-      [name]: value,
-    })
+    if (name === "nama_produk") {
+      const selectedProduct = products.find((p) => p.nama === value);
+      const hargaProduk = selectedProduct ? selectedProduct.harga : 0;
+      const durasi = parseInt(dataForm.durasi) || 0;
+
+      setDataForm((prev) => ({
+        ...prev,
+        nama_produk: value,
+        harga_produk: hargaProduk,
+        harga: hargaProduk * durasi,
+      }));
+    } else if (name === "durasi") {
+      const durasi = parseInt(value) || 0;
+      const hargaProduk = parseInt(dataForm.harga_produk) || 0;
+
+      setDataForm((prev) => ({
+        ...prev,
+        durasi: value,
+        harga: hargaProduk * durasi,
+      }));
+    } else {
+      setDataForm((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
+    // setDataForm({
+    //   ...dataForm,
+    //   [name]: value,
+    // })
   }
 
   // Fungsi Edit produk (contoh: tampilkan data ke form/modal, disesuaikan kebutuhanmu)
@@ -78,6 +117,7 @@ export default function Pemesanan() {
       tanggal: pemesanan.tanggal,
       durasi: pemesanan.durasi,
       email: pemesanan.email,
+      harga_produk: pemesanan.harga_produk,
     })
     setEditData(pemesanan);
     setIsModalOpen(true);
@@ -107,13 +147,14 @@ export default function Pemesanan() {
         tanggal: dataForm.tanggal,
         durasi: dataForm.durasi,
         email: dataForm.email,
+        harga_produk: dataForm.harga_produk,
       })
 
       setSuccess("Produk berhasil diperbarui!")
 
       // Reset form
       setIsModalOpen(false);
-      setDataForm({ nama_produk: "", username: "", tanggal: "", durasi: "", email: "" })
+      setDataForm({ nama_produk: "", username: "", tanggal: "", durasi: "", email: "", harga_produk: "" });
 
       setTimeout(() => setSuccess(""), 3000)
 
@@ -204,7 +245,7 @@ export default function Pemesanan() {
               <input
                 type="text"
                 name="username"
-                value={dataForm.nama}
+                value={dataForm.username}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border border-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300"
               />

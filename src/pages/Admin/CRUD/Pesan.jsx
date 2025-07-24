@@ -201,6 +201,7 @@ export default function pesan() {
                 <th className="px-4 py-3">Tanggal</th>
                 <th className="px-4 py-3">Durasi</th>
                 <th className="px-4 py-3">Jenis Kendaraan</th>
+                <th className="px-4 py-3">Harga Total</th>
                 <th className="px-4 py-3"></th>
               </tr>
             </thead>
@@ -222,6 +223,7 @@ export default function pesan() {
                   <td className="px-6 py-4">{pemesanans.tanggal}</td>
                   <td className="px-6 py-4">{pemesanans.durasi}</td>
                   <td className="px-6 py-4">{pemesanans.nama_produk}</td>
+                  <td className="px-6 py-4">{pemesanans.harga_produk}</td>
                   <td className="px-6 py-4">
                     <div className="truncate text-gray-600 flex items-center gap-x-2">
                       <button
